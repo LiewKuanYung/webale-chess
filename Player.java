@@ -2,7 +2,7 @@ public class Player
 {
     public boolean player1;
     public boolean player2;
-    int a = 5;
+    int a = 0;
     int b = 7;
 
     private List<Pieces> chess = new ArrayList<>(); 
