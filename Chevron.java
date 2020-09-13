@@ -1,20 +1,33 @@
 public class Chevron implements MovementBehavior
 {
-    public boolean move(int x,int y)
+    int currentx;
+    int currenty;
+    String currentcolor;
+    Chevron(int x,int y,String color)//public constructor to initialize the position and color
     {
-        int tempx = x;
-        int tempy = y;
-        if (tempx < 0)
+        currentx = x;
+        currenty = y;
+        currentcolor = color;
+    }
+    public boolean move(int x,int y ,String color)//check if the clicked mouse position is an ally or not, if ally then return false else proceed to do checking for obstacles
+    {
+        if (currentcolor == color)//check if the clicked mouse position is an ally or not, if ally then return false else proceed to do checking for obstacles
         {
-            tempx *= -1;
+            return false;
         }
-        if (tempy < 0)
+        else
         {
-            tempy *= -1;
-        }
-        if (tempx == 1 && tempy == 2 || tempx == 2 && tempy == 1)//make sure that x and y is positive
-        {
-            if (Spot.IsEmpty(x,y))//if it is enemy then delete the piece, if it is team then display illegal movement
+            int tempx = x - currentx;
+            int tempy = y - currenty;
+            if (tempx < 0)
+            {
+                tempx *= -1;
+            }
+            if (tempy < 0)
+            {
+                tempy *= -1;
+            }
+            if (tempx == 1 && tempy == 2 || tempx == 2 && tempy == 1)
             {
                 return true;
             }
@@ -23,12 +36,6 @@ public class Chevron implements MovementBehavior
                 return false;
                 //pop up display "Illegal movement"
             }
-            
-        }
-        else 
-        {
-            return false;
-            //pop up display "Illegal movement"
         }
     }
 }
