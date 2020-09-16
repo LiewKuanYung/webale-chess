@@ -1,54 +1,52 @@
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.event.*;
 
 public class MainMenu extends JFrame{
+	
+	JPanel panelBody;
+	JLabel title;
+	JButton btnStart;
+	JButton btnInstruction;
+	JButton btnLoadGame;
+	JButton btnExitGame;
 	
 	public MainMenu() {
 	
 	super("Webale Chess Game");
 	getContentPane().setBackground(new Color(250, 240, 230));
- 
+
+	panelBody = new JPanel();
+	panelBody.setBackground(new Color(250, 240, 230));
     // Supply a layout manager for the body of the content
-    getContentPane().setLayout(new GridBagLayout());
+    panelBody.setLayout(new GridBagLayout());
     
     // Title
-    JLabel title = new JLabel("Webale Chess Game");
+    title = new JLabel("Webale Chess Game");
     title.setForeground(new Color(210, 105, 30));
     title.setFont(new Font("STXinwei", Font.BOLD, 40));
     GridBagConstraints gbc1 = new GridBagConstraints();
     gbc1.gridx = 0;
 	gbc1.gridy = 0;
     gbc1.insets = new Insets(0, 0,60, 0);
-    getContentPane().add(title,gbc1);
+    panelBody.add(title,gbc1);
     
     // Buttons
-	JButton btnNewButton = new JButton("Start New Game");
-	btnNewButton.setForeground(Color.WHITE);
-	btnNewButton.setBackground(new Color(244, 164, 96));
-	btnNewButton.setFont(new Font("STXinwei", Font.BOLD, 20));
-	btnNewButton.setPreferredSize(new Dimension(200, 30));
-	btnNewButton.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent e) {
-			/*
-			removeAll();
-			repaint();
-			revalidate();
-			*/
-		}
-	});
-	GridBagConstraints gbc2 = new GridBagConstraints();
-    gbc2.gridx = 0;
-	gbc2.gridy = 1;
-    gbc2.insets = new Insets(0, 0,30, 0);
-    getContentPane().add(btnNewButton,gbc2);
+	btnStart = new JButton("Start New Game");
+	btnStart.setForeground(Color.WHITE);
+	btnStart.setBackground(new Color(244, 164, 96));
+	btnStart.setFont(new Font("STXinwei", Font.BOLD, 20));
+	btnStart.setPreferredSize(new Dimension(200, 30));
 	
-	JButton btnInstruction = new JButton("Instruction\r\n");
-	btnInstruction.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent e) {
-		
-		}
-	});
+	GridBagConstraints gbc_btnStart = new GridBagConstraints();
+    gbc_btnStart.gridx = 0;
+	gbc_btnStart.gridy = 1;
+    gbc_btnStart.insets = new Insets(0, 0,30, 0);
+    panelBody.add(btnStart,gbc_btnStart);
+	
+	btnInstruction = new JButton("Instruction\r\n");
+	javax.swing.UIManager.put("OptionPane.messageFont", new Font("Segoe UI", Font.PLAIN, 15));
 	btnInstruction.setBackground(new Color(244, 164, 96));
 	btnInstruction.setForeground(Color.WHITE);
 	btnInstruction.setFont(new Font("STXinwei", Font.BOLD, 20));
@@ -57,9 +55,9 @@ public class MainMenu extends JFrame{
     gbc3.gridx = 0;
 	gbc3.gridy = 2;
     gbc3.insets = new Insets(0, 0,30, 0);
-	getContentPane().add(btnInstruction,gbc3);
+	panelBody.add(btnInstruction,gbc3);
 
-	JButton btnLoadGame = new JButton("Load Game");
+	btnLoadGame = new JButton("Load Game");
 	btnLoadGame.setBackground(new Color(244, 164, 96));
 	btnLoadGame.setForeground(Color.WHITE);
 	btnLoadGame.setFont(new Font("STXinwei", Font.BOLD, 20));
@@ -68,28 +66,20 @@ public class MainMenu extends JFrame{
     gbc4.gridx = 0;
 	gbc4.gridy = 3;
     gbc4.insets = new Insets(0, 0,30, 0);
-	getContentPane().add(btnLoadGame,gbc4);
+	panelBody.add(btnLoadGame,gbc4);
 	
-	JButton btnExitGame = new JButton("Exit Game");
+	btnExitGame = new JButton("Exit Game");
 	btnExitGame.setBackground(new Color(244, 164, 96));
 	btnExitGame.setForeground(Color.WHITE);
 	btnExitGame.setFont(new Font("STXinwei", Font.BOLD, 20));
 	btnExitGame.setPreferredSize(new Dimension(200, 30));
-	btnExitGame.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent e) {
-			int dialogButton = JOptionPane.showConfirmDialog (null, "Are you sure want to exit?","WARNING",JOptionPane.YES_NO_OPTION);
-			if(dialogButton == JOptionPane.YES_OPTION) {
-			System.exit(0);
-			}
-			else {
-			}
-		}
-	});
+	
 	GridBagConstraints gbc5 = new GridBagConstraints();
     gbc5.gridx = 0;
 	gbc5.gridy = 4;
     gbc5.insets = new Insets(0, 0,30, 0);
-	getContentPane().add(btnExitGame,gbc5);
+	panelBody.add(btnExitGame,gbc5);
+	getContentPane().add(panelBody);
 	
 	/*
 	JLabel iconLabel = new JLabel("");
@@ -105,6 +95,12 @@ public class MainMenu extends JFrame{
     
 	getContentPane().add(iconLabel);
 	*/
+	
+	/*
+	GameMenu gameMenu = new GameMenu();
+	GameMenuController controller = new GameMenuController(gameMenu);
+	setJMenuBar(gameMenu);
+    */
 	getContentPane().setPreferredSize(new Dimension(1000, 1000));
 	setSize(1000,1000);
 	setResizable(true);
@@ -115,19 +111,4 @@ public class MainMenu extends JFrame{
 
 	}
         
-	public static void main(String args[]) {
-		try {
-			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-				if ("Nimbus".equals(info.getName())) {
-					javax.swing.UIManager.setLookAndFeel(info.getClassName());
-					break;
-				}
-			}
-		} catch (ClassNotFoundException ex) {		
-		} catch (InstantiationException ex) {
-		} catch (IllegalAccessException ex) {	
-		} catch (javax.swing.UnsupportedLookAndFeelException ex) {	
-		}
-		new MainMenu();
-	}
 }
