@@ -20,7 +20,6 @@ public class MainMenuController {
 		 
 		 MainMenu mainMenu;
 		 GameMenu gameMenu;
-		 
 		 GameMenuController controller;
 		 
 		 StartActionListener(MainMenu mainMenu){
@@ -31,9 +30,10 @@ public class MainMenuController {
 			gameMenu = new GameMenu();
 			controller = new GameMenuController(gameMenu);
 			mainMenu.getContentPane().removeAll();
-			/*getContentPane().add();
+			/*
 			 //add board here//
-			 */
+			mainMenu.getContentPane().add();
+			*/
 			mainMenu.getContentPane().repaint();
 			mainMenu.getContentPane().revalidate();
 			mainMenu.setJMenuBar(gameMenu);

@@ -22,7 +22,7 @@ public class GameMenuController {
 
 	class InstructionActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			JOptionPane.showMessageDialog(null,"Hello, Welcome to Webale Chess Game. Instruction: \n\n"
+			JOptionPane.showMessageDialog(null,"Hello, Welcome to Webale Chess Game.\n\nInstruction: \n\n"
 		 		+ "a. The Sun can only move one step in any direction. The game ends when the Sun is captured by the other side.\n"
 				 + "b. The Chevron moves in an L shape: 2 steps in one direction then 1 step perpendicular to it. (Similar\r\n" + 
 				 "to the Knight in normal chess.) It is the only piece that can skip over the other pieces.\n"
@@ -36,9 +36,7 @@ public class GameMenuController {
 	class NewGameActionListener implements ActionListener {
 	    public void actionPerformed(ActionEvent e) {
 	    	/*
-			removeAll();
-			repaint();
-			revalidate();
+			intialize a new board
 			*/
 	    }
 	}
@@ -50,21 +48,44 @@ public class GameMenuController {
 	
 	class ExitActionListener implements ActionListener {
 	    public void actionPerformed(ActionEvent e) {
-	    	/*
-	    	removeAll();
-			repaint();
-			revalidate();
-			*/
+	    		
+			int dialogButton = JOptionPane.showConfirmDialog (null, "Are you sure want to exit?","WARNING",JOptionPane.YES_NO_OPTION);
+			if(dialogButton == JOptionPane.YES_OPTION) {
+			System.exit(0);
+			}
+			else {
+			}
+			
 	    }
 	}
 	
 	class DrawActionListener implements ActionListener {
 	    public void actionPerformed(ActionEvent e) {
+	    	int dialogButton_1 = JOptionPane.showConfirmDialog (null, "Do you want to accept the draw request?","WARNING",JOptionPane.YES_NO_OPTION);
+			if(dialogButton_1 == JOptionPane.YES_OPTION) {
+				int dialogButton_2 = JOptionPane.showConfirmDialog (null, "Both players have agreed that this game should be a draw.","Draw",JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE);
+				if(dialogButton_2 == 0) {
+					int dialogButton_3 = JOptionPane.showConfirmDialog (null, "The chess match is ended. Program will now exit...","Exit",JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE);
+					if(dialogButton_3 == 0) {
+						System.exit(0);
+					}
+				}
+			}
 	    }
 	}
 	
 	class ResignActionListener implements ActionListener {
 	    public void actionPerformed(ActionEvent e) {
+	    	int dialogButton_1 = JOptionPane.showConfirmDialog (null, "Are you sure want to resign the game?","WARNING",JOptionPane.YES_NO_OPTION);
+			if(dialogButton_1 == JOptionPane.YES_OPTION) {
+				int dialogButton_2 = JOptionPane.showConfirmDialog (null, "Opponent has won the game !!!","Congratulations",JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE);
+				if(dialogButton_2 == 0) {
+					int dialogButton_3 = JOptionPane.showConfirmDialog (null, "The chess match is ended. Program will now exit...","Exit",JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE);
+					if(dialogButton_3 == 0) {
+						System.exit(0);
+					}
+				}
+			}
 	    }
 	}
 

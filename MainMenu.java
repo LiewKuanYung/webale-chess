@@ -2,6 +2,9 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
+import java.awt.Image;
+import javax.imageio.ImageIO;
+import java.util.ArrayList;
 
 public class MainMenu extends JFrame{
 	
@@ -46,7 +49,7 @@ public class MainMenu extends JFrame{
     panelBody.add(btnStart,gbc_btnStart);
 	
 	btnInstruction = new JButton("Instruction\r\n");
-	javax.swing.UIManager.put("OptionPane.messageFont", new Font("Segoe UI", Font.PLAIN, 15));
+	javax.swing.UIManager.put("OptionPane.messageFont", new Font("Comic Sans MS", Font.BOLD, 15));
 	btnInstruction.setBackground(new Color(244, 164, 96));
 	btnInstruction.setForeground(Color.WHITE);
 	btnInstruction.setFont(new Font("STXinwei", Font.BOLD, 20));
@@ -81,20 +84,17 @@ public class MainMenu extends JFrame{
 	panelBody.add(btnExitGame,gbc5);
 	getContentPane().add(panelBody);
 	
-	/*
+	
 	JLabel iconLabel = new JLabel("");
 
 	try {
-    	Image originalIcon = ImageIO.read(getClass().getResource("images/background1.JPG"));
+    	Image originalIcon = ImageIO.read(getClass().getResource("images/BlueChess.PNG"));
     	Image icon = originalIcon.getScaledInstance(1000, 1000, Image.SCALE_DEFAULT);
     	iconLabel.setIcon(new ImageIcon(icon));
     }
     catch (Exception ex) {
     	System.out.println("Image not found");
     }
-    
-	getContentPane().add(iconLabel);
-	*/
 	
 	/*
 	GameMenu gameMenu = new GameMenu();
