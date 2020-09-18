@@ -14,9 +14,9 @@ public class Arrow implements MovementBehavior
         boolean facing = true;//if false reverse the function
         if (currentcolor == color)//check if the clicked mouse position is an ally or not, if ally then return false else proceed to do checking for obstacles
         {
-            return false;
+            return false;//if the end spot is ally then return false
         }
-        else
+        else //else check for obstacle
         {
             int tempx = x - currentx;
             int tempy = y - currenty;
@@ -24,7 +24,7 @@ public class Arrow implements MovementBehavior
             {
                 if (tempy == 1 && tempx ==0)
                 {
-                    return true;
+                    return true;//making 1 tile step so no need check for obstacle
                 }
                 else if (tempy == 2 && tempx ==0)
                 {
@@ -37,7 +37,7 @@ public class Arrow implements MovementBehavior
                         return true;
                     }
                 }
-                else 
+                else //if it is not the movement rule of Arrow
                 {
                     return false;
                     //pop up display "Illegal movement"
@@ -47,7 +47,7 @@ public class Arrow implements MovementBehavior
             {
                 if (tempy == -1 && tempx ==0)
                 {
-                    return true;
+                    return true;//making 1 tile step so no need check for obstacle
                 }
                 else if (tempy == -2 && tempx ==0)
                 {
@@ -60,7 +60,7 @@ public class Arrow implements MovementBehavior
                         return true;
                     }
                 }
-                else 
+                else //if it is not the movement rule of Arrow
                 {
                     return false;
                     //pop up display "Illegal movement"

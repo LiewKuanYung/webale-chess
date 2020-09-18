@@ -13,9 +13,9 @@ public class Chevron implements MovementBehavior
     {
         if (currentcolor == color)//check if the clicked mouse position is an ally or not, if ally then return false else proceed to do checking for obstacles
         {
-            return false;
+            return false;//if the end spot is ally then return false
         }
-        else
+        else //else check movement
         {
             int tempx = x - currentx;
             int tempy = y - currenty;
@@ -31,7 +31,7 @@ public class Chevron implements MovementBehavior
             {
                 return true;
             }
-            else 
+            else //if it is not the movement rule of Chevron
             {
                 return false;
                 //pop up display "Illegal movement"
