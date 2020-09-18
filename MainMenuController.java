@@ -20,6 +20,7 @@ public class MainMenuController {
 		 
 		 MainMenu mainMenu;
 		 GameMenu gameMenu;
+		 
 		 GameMenuController controller;
 		 
 		 StartActionListener(MainMenu mainMenu){
@@ -36,6 +37,7 @@ public class MainMenuController {
 			mainMenu.getContentPane().repaint();
 			mainMenu.getContentPane().revalidate();
 			mainMenu.setJMenuBar(gameMenu);
+			mainMenu.add(new GameBoardView());
 		}
 	}
 	
