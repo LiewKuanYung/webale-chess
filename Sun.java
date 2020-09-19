@@ -5,8 +5,7 @@ public class Sun extends Piece
     {
     	super(x,y,color);
     	String pieceName = "SUN";
-    	super.setPieceName(pieceName);
-        
+    	super.setPieceName(pieceName);   
     }
     
     //check if the clicked mouse position is an ally or not, if ally then return false else proceed to do checking for obstacles
@@ -18,16 +17,9 @@ public class Sun extends Piece
         }
         else //else check movement
         {
-            int tempx = end.getX() - start.getX();
-            int tempy = end.getY() - start.getY();
-            if (tempx < 0)
-            {
-                tempx *= -1;
-            }
-            if (tempy < 0)
-            {
-                tempy *= -1;
-            }
+            int tempx = java.lang.Math.abs(end.getX() - start.getX());
+            int tempy = java.lang.Math.abs(end.getY() - start.getY());
+            
             if (tempx <= 1 && tempy <= 1)
             {
                 return true;
