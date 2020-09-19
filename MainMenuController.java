@@ -4,13 +4,15 @@ import javax.swing.*;
 import javax.swing.event.*;
 
 public class MainMenuController {
-	 MainMenu mainMenu;
+	 public MainMenu mainMenu;
+	 public GameBoardController boardControl;
 
-	public MainMenuController(MainMenu mainMenu) {
+	public MainMenuController(MainMenu mainMenu, GameBoardController boardControl) {
 		this.mainMenu = mainMenu;
+		this.boardControl = boardControl;
 		
 		//Add listener to view 
-		mainMenu.btnStart.addActionListener(new StartActionListener(mainMenu));	
+		mainMenu.btnStart.addActionListener(new StartActionListener(mainMenu, boardControl));	
 		mainMenu.btnInstruction.addActionListener(new InstructionActionListener());
 		mainMenu.btnExitGame.addActionListener(new TerminateActionListener());
 	}
@@ -21,9 +23,11 @@ public class MainMenuController {
 		 MainMenu mainMenu;
 		 GameMenu gameMenu;
 		 GameMenuController controller;
+		 GameBoardController boardControl;
 		 
-		 StartActionListener(MainMenu mainMenu){
+		 StartActionListener(MainMenu mainMenu, GameBoardController boardControl){
 			 this.mainMenu = mainMenu;
+			 this.boardControl = boardControl;
 		 }
 		public void actionPerformed(ActionEvent e) {
 	
@@ -37,7 +41,7 @@ public class MainMenuController {
 			mainMenu.getContentPane().repaint();
 			mainMenu.getContentPane().revalidate();
 			mainMenu.setJMenuBar(gameMenu);
-			mainMenu.add(new GameBoardView());
+			mainMenu.add(boardControl.getBoardView());
 		}
 	}
 	

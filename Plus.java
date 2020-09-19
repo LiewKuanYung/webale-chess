@@ -3,12 +3,16 @@ public class Plus implements MovementBehavior
     int currentx;
     int currenty;
     String currentcolor;
-    Plus(int x,int y,String color)//public constructor to initialize the position and color
+    
+  //public constructor to initialize the position and color
+    Plus(int x,int y,String color)
     {
         currentx = x;
         currenty = y;
         currentcolor = color;
     }
+    
+    
     public boolean move(int x,int y ,String color)//check if the clicked mouse position is an ally or not, if ally then return false else proceed to do checking for obstacles
     {
         if (currentcolor == color)//check if the clicked mouse position is an ally or not, if ally then return false else proceed to do checking for obstacles

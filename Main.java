@@ -18,8 +18,13 @@ public class Main {
 		} catch (javax.swing.UnsupportedLookAndFeelException ex) {	
 		}
 		
+		
+		GameBoardView boardView = new GameBoardView();
+		GameBoard boardModel = new GameBoard();
+		GameBoardController boardController = new GameBoardController(boardModel, boardView);
+		
 		MainMenu mainMenu = new MainMenu();
-		MainMenuController controller = new MainMenuController(mainMenu);
+		MainMenuController controller = new MainMenuController(mainMenu, boardController);
 
 		
 	}

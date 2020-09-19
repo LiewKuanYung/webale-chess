@@ -1,23 +1,21 @@
+import java.util.*;
+
 public class Player
 {
     public boolean player1;
     public boolean player2;
     int a = 0;
     int b = 7;
+    private ArrayList<Piece> chess = new ArrayList<>(); 
 
-    private List<Pieces> chess = new ArrayList<>(); 
-
-    public Player1(boolean player1)
+    public Player(boolean isPlayer1)
     {
-        this.player1 = player1;
+        this.player1 = isPlayer1;
+        this.player2 = (!isPlayer1);
+        addchess();
     }
 
-    public Player2(boolean player2)
-    {
-        this.player2 = player2;
-    }
-
-    public List<Pieces> getChess()
+    public ArrayList<Piece> getChess()
     {
         return chess;
     }

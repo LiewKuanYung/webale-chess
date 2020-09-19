@@ -20,6 +20,16 @@ public class Spot {
 	{ 
 		this.piece = p; 
 	} 
+	
+	public boolean isEmpty() 
+	{
+		if(this.piece == null) {
+			return true;
+		} 
+		else {
+			return false;
+		}
+	}
 
 	public int getX() 
 	{ 
