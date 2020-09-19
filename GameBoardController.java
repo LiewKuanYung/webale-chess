@@ -9,7 +9,7 @@ public class GameBoardController{
 	public GameBoardController(GameBoard boardModel, GameBoardView boardView) {
 		this.boardModel = boardModel;
 		this.boardView = boardView;
-		this.boardView.addBoardListener(new BoardListener());
+		this.boardView.addBoardListener(new BoardListener(boardModel));
 	}
 	
 	public GameBoardView getBoardView() {
@@ -21,6 +21,12 @@ public class GameBoardController{
 	}
 	
 	class BoardListener implements ActionListener {
+		
+		GameBoard boardModel;
+		BoardListener(GameBoard boardModel){
+			this.boardModel = boardModel;
+		}
+		
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			
@@ -28,10 +34,26 @@ public class GameBoardController{
 			if(obj instanceof GameBoardButton){
 	
 				GameBoardButton clicked = (GameBoardButton)obj;
-				int r = clicked.getCol();
-				int c = clicked.getRow();
+				int c = clicked.getCol();
+				int r = clicked.getRow();
 	
-				System.out.println("Clicked X:"+r+" Y:"+c);
+				System.out.println("Clicked X:"+ c + " Y:" + r);
+				
+				try {
+					
+					boardModel.getSpot(c, r);
+					/*
+					if(boardModel.getSpot(r, c).isEmpty()) {
+						System.out.print("Nothing here");
+					} else {
+						System.out.print(boardModel.getSpot(r, c).getPiece().getPieceName());
+					}/**/
+				} catch (Exception e1) {
+					System.out.println("GameBoardController: actionPerformed exception");
+					//e1.printStackTrace();
+				}
+				
+				
 			}
 		}
 	}

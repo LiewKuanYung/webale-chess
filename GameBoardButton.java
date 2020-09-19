@@ -2,14 +2,12 @@ import javax.swing.JButton;
 
 class GameBoardButton extends JButton {
 	
-	private int x;
-    private int y;
+	private int x; //Column // Horizontal
+    private int y; //Row 	// Vertical
 
-    public GameBoardButton(String text, int x, int y) {
-        super(text);
+    public GameBoardButton(int x, int y) {
         this.x = x;
         this.y = y;
-        System.out.println("Check point 1");
     }
 
     public int getCol() {

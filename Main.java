@@ -4,7 +4,7 @@ import javax.swing.*;
 import javax.swing.event.*;
 
 public class Main {
-	public static void main(String args[]) {
+	public static void main(String args[]) {/*
 		try {
 			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
 				if ("Nimbus".equals(info.getName())) {
@@ -16,7 +16,7 @@ public class Main {
 		} catch (InstantiationException ex) {
 		} catch (IllegalAccessException ex) {	
 		} catch (javax.swing.UnsupportedLookAndFeelException ex) {	
-		}
+		}/**/
 		
 		
 		GameBoardView boardView = new GameBoardView();

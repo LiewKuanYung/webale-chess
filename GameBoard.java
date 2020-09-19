@@ -1,6 +1,6 @@
 public class GameBoard { 
 	
-	Spot[][] boxes; 
+	GameBoardSpot[][] boxes = new GameBoardSpot[8][7]; 
 
 	public GameBoard() 
 	{ 
@@ -8,14 +8,19 @@ public class GameBoard {
 	} 
 
 	//get information on particular spot
-	public Spot getSpot(int x, int y) throws Exception 
+	public GameBoardSpot getSpot(int x, int y) throws Exception 
 	{ 
 
-		if (x < 0 || x > 8 || y < 0 || y > 7) { 
-			throw new Exception("Index out of bound"); 
+		if (x < 0 || x > 7 || y < 0 || y > 8) { 
+			throw new Exception("GameBoard Exception: Index out of bound"); 
 		} 
 		
 		System.out.println("Result: X = " + boxes[x][y].getX() + " Y = " + boxes[x][y].getY());
+		
+		if(!boxes[x][y].isEmpty()) {
+			System.out.println(boxes[x][y].getPiece().getPieceName());
+		}
+		
 		return boxes[x][y]; 
 	} 
 
@@ -36,5 +41,15 @@ public class GameBoard {
 	        } 
 		} 
 		*/
+		
+		for(int i = 0; i < 8; i++)
+	    {
+	        for(int j = 0; j < 7; j++)
+	        {
+	            boxes[i][j] = new GameBoardSpot (i , j ,null);
+	        } 
+		} 
+		
+		boxes[7][0].setPiece(new Sun(0,7,"Red"));
 	} 
 } 

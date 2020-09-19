@@ -1,10 +1,10 @@
-public class Spot { 
+public class GameBoardSpot { 
 	
 	private Piece piece; 
 	private int x; 
 	private int y; 
 
-	public Spot(int x, int y, Piece piece) 
+	public GameBoardSpot(int x, int y, Piece piece) 
 	{ 
 		this.setPiece(piece); 
 		this.setX(x); 

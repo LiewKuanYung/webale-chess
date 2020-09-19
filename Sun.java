@@ -1,24 +1,25 @@
-public class Sun implements MovementBehavior
+public class Sun extends Piece
 {
-    int currentx;
-    int currenty;
-    String currentcolor;
-    Sun(int x,int y,String color)//public constructor to initialize the position and color
+	//public constructor to initialize the position and color
+    Sun(int x, int y, String color)
     {
-        currentx = x;
-        currenty = y;
-        currentcolor = color;
+    	super(x,y,color);
+    	String pieceName = "SUN";
+    	super.setPieceName(pieceName);
+        
     }
-    public boolean move(int x,int y ,String color)//check if the clicked mouse position is an ally or not, if ally then return false else proceed to do checking for obstacles
+    
+    //check if the clicked mouse position is an ally or not, if ally then return false else proceed to do checking for obstacles
+    public boolean isValidMove(GameBoard board, GameBoardSpot start, GameBoardSpot end)
     {
-        if (currentcolor == color)//check if the clicked mouse position is an ally or not, if ally then return false else proceed to do checking for obstacles
+        if (super.getColor() == end.getPiece().getColor())//check if the clicked mouse position is an ally or not, if ally then return false else proceed to do checking for obstacles
         {
             return false;//if the end spot is ally then return false
         }
         else //else check movement
         {
-            int tempx = x - currentx;
-            int tempy = y - currenty;
+            int tempx = end.getX() - start.getX();
+            int tempy = end.getY() - start.getY();
             if (tempx < 0)
             {
                 tempx *= -1;

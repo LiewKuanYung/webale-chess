@@ -2,24 +2,49 @@ public abstract class Piece
 {
 	private int currentX;
     private int currentY;
-    private MovementBehavior mb;
+    private String pieceName;
+    private String pieceIcon;
+    private String color; 
     private boolean captured = false; 
-	private boolean red = false; 
+    
+    //private MovementBehavior movement;
 
-	public Piece(boolean red) 
+	public Piece(int currentX, int currentY, String color) 
 	{ 
-		this.setWhite(red); 
+		this.currentX = currentX;
+		this.currentY = currentY;
+		this.color = color;
 	} 
+	
+	public int getCurrentX()
+	{
+		return currentX;
+	}
+	
+	public int getCurrentY()
+	{
+		return currentY;
+	}
+	
+	public String getPieceName() 
+	{ 
+		return pieceName;
+	}
+	
+	public void setPieceName(String pieceName) 
+	{ 
+		this.pieceName = pieceName;
+	}
+	
+	public String getPieceIcon() 
+	{ 
+		return pieceIcon;
+	}
 
-	public boolean isRed() 
+	public String getColor() 
 	{ 
-		return this.red == true; 
-	} 
-
-	public void setWhite(boolean red) 
-	{ 
-		this.red = red; 
-	} 
+		return color; 
+	}  
 
 	public boolean isCaptured() 
 	{ 
@@ -32,10 +57,10 @@ public abstract class Piece
 	} 
     
     //Validate move
-    public abstract boolean isValidMove(GameBoard board, Spot start, Spot end);
+    public abstract boolean isValidMove(GameBoard board, GameBoardSpot start, GameBoardSpot end);
 	
     //Move the piece
-    public abstract void move(GameBoard board, Spot start, Spot end);
+    //public abstract void move(GameBoard board, Spot start, Spot end);
     
 
 }

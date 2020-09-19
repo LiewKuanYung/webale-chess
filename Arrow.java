@@ -28,7 +28,7 @@ public class Arrow implements MovementBehavior
                 }
                 else if (tempy == 2 && tempx ==0)
                 {
-                    if (!Spot.IsEmpty(x,y-1))
+                    if (!GameBoardSpot.IsEmpty(x,y-1))
                     {
                         return false;
                     }
@@ -51,7 +51,7 @@ public class Arrow implements MovementBehavior
                 }
                 else if (tempy == -2 && tempx ==0)
                 {
-                    if (!Spot.IsEmpty(x,y+1))
+                    if (!GameBoardSpot.IsEmpty(x,y+1))
                     {
                         return false;
                     }

@@ -31,7 +31,7 @@ public class Triangle implements MovementBehavior
                     {
                         for (int i = 1; i < tempx ; i++)
                         {
-                            if (!Spot.IsEmpty(currentx+i,currenty+i))
+                            if (!GameBoardSpot.IsEmpty(currentx+i,currenty+i))
                             {
                                 i = 0;//stop the loop when it detects the first obstacle
                                 return false;
@@ -53,7 +53,7 @@ public class Triangle implements MovementBehavior
                     {
                         for (int i = -1; i > tempx ; i--)
                         {
-                            if (!Spot.IsEmpty(currentx-i,currenty-i))
+                            if (!GameBoardSpot.IsEmpty(currentx-i,currenty-i))
                             {
                                 i = 0;//stop the loop when it detects the first obstacle
                                 return false;
@@ -76,7 +76,7 @@ public class Triangle implements MovementBehavior
                 {
                     for (int i = 1; i < tempx ; i++)
                     {
-                        if (!Spot.IsEmpty(currentx+i,currenty-i))
+                        if (!GameBoardSpot.IsEmpty(currentx+i,currenty-i))
                         {
                             i = 0;//stop the loop when it detects the first obstacle
                             return false;
@@ -98,7 +98,7 @@ public class Triangle implements MovementBehavior
                 {
                     for (int i = 1; i < tempy ; i++)
                     {
-                        if (!Spot.IsEmpty(currentx-i,currenty+i))
+                        if (!GameBoardSpot.IsEmpty(currentx-i,currenty+i))
                         {
                             i = 0;//stop the loop when it detects the first obstacle
                             return false;

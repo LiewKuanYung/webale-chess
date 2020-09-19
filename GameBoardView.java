@@ -1,5 +1,8 @@
 
-import javax.swing.*; 
+import javax.swing.*;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -16,14 +19,16 @@ public class GameBoardView extends JPanel {
 	
 	//Initialize game board buttons
 	void initComponent() {
-		this.setLayout(new BorderLayout());
 		
-		for (int i=0; i < btn.length; i++) {
-		    for (int j=0; j < btn[i].length; j++) {
-		    	String text = ("[" + i + "][" + j + "]");
-		    	btn[i][j] = new GameBoardButton(text, i, j);
-		    	//btn[i][j]= new JButton(text);
+		gameBoard.setPreferredSize(new Dimension(500,500));
+		
+		System.out.println(btn.length + " " + btn[0].length);
+		
+		for (int i=0; i < btn.length; i++) { //Row
+		    for (int j=0; j < btn[i].length; j++) { //Column
+		    	btn[i][j] = new GameBoardButton(i, j);
 		        btn[i][j].setBackground(Color.WHITE);
+		        btn[i][j].setPreferredSize(new Dimension(50, 50));
 		        gameBoard.setBackground(Color.yellow);
 		        gameBoard.add(btn[i][j]);
 		    }
