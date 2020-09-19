@@ -20,6 +20,7 @@ public class Player
         return chess;
     }
 
+    //Initialize the chess piece according to the player's color
     public void addchess()
     {
         if(player1 == true)
@@ -33,7 +34,7 @@ public class Player
             chess.add(new Plus(6, a, red));
             for(int i=0; i<4 ;i++)
             {
-                chess.add(new Arrow(i*2, a, red));
+                chess.add(new Arrow(i*2, a+1, red));
             }
         }
         else
@@ -47,7 +48,7 @@ public class Player
             chess.add(new Plus(6, b, red));
             for(int i=0; i<4 ;i++)
             {
-                chess.add(new Arrow(i*2, b, red));
+                chess.add(new Arrow(i*2, b-1, red));
             }
         }
 
@@ -62,7 +63,7 @@ public class Player
             chess.add(new Plus(6, b, blue));
             for(int i=0; i<4 ;i++)
             {
-                chess.add(new Arrow(i*2, b, blue));
+                chess.add(new Arrow(i*2, b-1, blue));
             }
         }
         else
@@ -76,7 +77,7 @@ public class Player
             chess.add(new Plus(6, a, blue));
             for(int i=0; i<4 ;i++)
             {
-                chess.add(new Arrow(i*2, a, blue));
+                chess.add(new Arrow(i*2, a+1, blue));
             }
         }
     }
