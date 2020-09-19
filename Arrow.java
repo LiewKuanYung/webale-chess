@@ -1,26 +1,31 @@
-public class Arrow implements MovementBehavior
+public class Arrow extends Piece
 {
-    int currentx;
-    int currenty;
-    String currentcolor;
-    Arrow(int x,int y,String color)//public constructor to initialize the position and color
+    private boolean direction;
+    Arrow(int x, int y, String color)
     {
-        currentx = x;
-        currenty = y;
-        currentcolor = color;
+    	super(x,y,color);
+    	String pieceName = "Arrow";
+    	super.setPieceName(pieceName);
+    	if (color == "Red")//top part
+    	{
+    	    boolean direction = false; // facing to South
+    	}
+    	else if (color == "Blue")//bottom part
+    	{
+    	    boolean direction = true; //facing to North
+    	}
     }
-    public boolean move(int x,int y ,String color)//the input from click mouse position
+    public boolean isValidMove(GameBoard board, GameBoardSpot start, GameBoardSpot end)//the input from click mouse position
     {
-        boolean facing = true;//if false reverse the function
-        if (currentcolor == color)//check if the clicked mouse position is an ally or not, if ally then return false else proceed to do checking for obstacles
+        if (super.getColor() == end.getPiece().getColor())//check if the clicked mouse position is an ally or not, if ally then return false else proceed to do checking for obstacles
         {
             return false;//if the end spot is ally then return false
         }
         else //else check for obstacle
         {
-            int tempx = x - currentx;
-            int tempy = y - currenty;
-            if (facing)
+            int tempx = end.getX() - start.getX();
+            int tempy = end.getY() - start.getY();
+            if (direction)
             {
                 if (tempy == 1 && tempx ==0)
                 {
@@ -28,7 +33,7 @@ public class Arrow implements MovementBehavior
                 }
                 else if (tempy == 2 && tempx ==0)
                 {
-                    if (!GameBoardSpot.IsEmpty(x,y-1))
+                    if (!GameBoardSpot.IsEmpty(end.getX(),end.getY()-1))
                     {
                         return false;
                     }
@@ -43,7 +48,7 @@ public class Arrow implements MovementBehavior
                     //pop up display "Illegal movement"
                 }
             }
-            else if (!facing)
+            else if (!direction)
             {
                 if (tempy == -1 && tempx ==0)
                 {
@@ -51,7 +56,7 @@ public class Arrow implements MovementBehavior
                 }
                 else if (tempy == -2 && tempx ==0)
                 {
-                    if (!GameBoardSpot.IsEmpty(x,y+1))
+                    if (!GameBoardSpot.IsEmpty(end.getX(),end.getY()+1))
                     {
                         return false;
                     }
