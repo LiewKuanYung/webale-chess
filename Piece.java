@@ -40,6 +40,11 @@ public abstract class Piece
 	{ 
 		return pieceIcon;
 	}
+	
+	public void setPieceIcon(String pieceIcon) 
+	{ 
+		this.pieceIcon = pieceIcon;
+	}
 
 	public String getColor() 
 	{ 

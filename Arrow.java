@@ -6,11 +6,17 @@ public class Arrow extends Piece
     	super(x,y,color);
     	String pieceName = "ARR";
     	super.setPieceName(pieceName);
-    	if (color == "Red")//top part
+    	if(color == "R") {
+    		super.setPieceIcon("images/Red_Arrow.png");
+    	} else {
+    		super.setPieceIcon("images/Blue_Arrow.png");
+    	}
+    	
+    	if (color == "R")//top part
     	{
     	    boolean direction = false; // facing to South
     	}
-    	else if (color == "Blue")//bottom part
+    	else if (color == "B")//bottom part
     	{
     	    boolean direction = true; //facing to North
     	}

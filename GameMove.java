@@ -4,8 +4,7 @@ public class GameMove {
 	private GameBoardSpot start; 
 	private GameBoardSpot end; 
 	private Piece pieceMoved; 
-	private Piece pieceKilled; 
-	private boolean castlingMove = false; 
+	private Piece pieceKilled;  
 
 	public GameMove(Player player, GameBoardSpot start, GameBoardSpot end) 
 	{ 
@@ -14,4 +13,20 @@ public class GameMove {
 		this.end = end; 
 		this.pieceMoved = start.getPiece(); 
 	} 
+	
+	public GameBoardSpot getStart() {
+		return start;
+	}
+	
+	public GameBoardSpot getEnd() {
+		return end;
+	}
+	
+	public Player getPlayer() {
+		return player;
+	}
+	
+	public Piece getPieceMoved() {
+		return pieceMoved;
+	}
 }

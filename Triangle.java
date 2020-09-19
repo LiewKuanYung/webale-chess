@@ -5,6 +5,11 @@ public class Triangle extends Piece
     	super(x,y,color);
     	String pieceName = "TRI";
     	super.setPieceName(pieceName);
+    	if(color == "R") {
+    		super.setPieceIcon("images/Red_Triangle.png");
+    	} else {
+    		super.setPieceIcon("images/Blue_Triangle.png");
+    	}
         
     }
     public boolean isValidMove(GameBoard board, GameBoardSpot start, GameBoardSpot end)//check if the clicked mouse position is an ally or not, if ally then return false else proceed to do checking for obstacles

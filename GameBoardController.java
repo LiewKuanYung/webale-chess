@@ -9,6 +9,8 @@ public class GameBoardController{
 	public GameBoardController(GameBoard boardModel, GameBoardView boardView) {
 		this.boardModel = boardModel;
 		this.boardView = boardView;
+		this.boardView.setPieceRotatedIcon(boardModel.getRedPieceList());
+		this.boardView.setPieceIcon(boardModel.getBluePieceList());
 		this.boardView.addBoardListener(new BoardListener(boardModel));
 	}
 	
@@ -16,7 +18,7 @@ public class GameBoardController{
 		return boardView;
 	}
 	
-	public GameBoard getGameBoardModel() {
+	public GameBoard getBoardModel() {
 		return boardModel;
 	}
 	

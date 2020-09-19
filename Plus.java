@@ -7,6 +7,11 @@ public class Plus extends Piece
     	super(x,y,color);
     	String pieceName = "PLS";
     	super.setPieceName(pieceName);
+    	if(color == "R") {
+    		super.setPieceIcon("images/Red_Plus.png");
+    	} else {
+    		super.setPieceIcon("images/Blue_Plus.png");
+    	}
     }
     
     @Override

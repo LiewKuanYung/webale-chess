@@ -5,7 +5,12 @@ public class Sun extends Piece
     {
     	super(x,y,color);
     	String pieceName = "SUN";
-    	super.setPieceName(pieceName);   
+    	super.setPieceName(pieceName);  
+    	if(color == "R") {
+    		super.setPieceIcon("images/Red_Sun.png");
+    	} else {
+    		super.setPieceIcon("images/Blue_Sun.png");
+    	}
     }
     
     //check if the clicked mouse position is an ally or not, if ally then return false else proceed to do checking for obstacles
