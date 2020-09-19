@@ -3,10 +3,11 @@ public class Chevron extends Piece
     Chevron(int x, int y, String color)
     {
     	super(x,y,color);
-    	String pieceName = "Chevron";
+    	String pieceName = "CHV";
     	super.setPieceName(pieceName);
         
     }
+    
     public boolean isValidMove(GameBoard board, GameBoardSpot start, GameBoardSpot end)//check if the clicked mouse position is an ally or not, if ally then return false else proceed to do checking for obstacles
     {
         if (super.getColor() == end.getPiece().getColor())//check if the clicked mouse position is an ally or not, if ally then return false else proceed to do checking for obstacles

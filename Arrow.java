@@ -4,7 +4,7 @@ public class Arrow extends Piece
     Arrow(int x, int y, String color)
     {
     	super(x,y,color);
-    	String pieceName = "Arrow";
+    	String pieceName = "ARR";
     	super.setPieceName(pieceName);
     	if (color == "Red")//top part
     	{
@@ -33,14 +33,19 @@ public class Arrow extends Piece
                 }
                 else if (tempy == 2 && tempx ==0)
                 {
-                    if (!GameBoardSpot.IsEmpty(end.getX(),end.getY()-1))
-                    {
-                        return false;
-                    }
-                    else
-                    {
-                        return true;
-                    }
+                    try {
+						if (!board.getSpot(end.getX(),end.getY()-1).isEmpty())
+						{
+						    return false;
+						}
+						else
+						{
+						    return true;
+						}
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
                 }
                 else //if it is not the movement rule of Arrow
                 {
@@ -56,14 +61,19 @@ public class Arrow extends Piece
                 }
                 else if (tempy == -2 && tempx ==0)
                 {
-                    if (!GameBoardSpot.IsEmpty(end.getX(),end.getY()+1))
-                    {
-                        return false;
-                    }
-                    else
-                    {
-                        return true;
-                    }
+                    try {
+						if (!board.getSpot(end.getX(),end.getY()+1).isEmpty())
+						{
+						    return false;
+						}
+						else
+						{
+						    return true;
+						}
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
                 }
                 else //if it is not the movement rule of Arrow
                 {
@@ -71,6 +81,8 @@ public class Arrow extends Piece
                     //pop up display "Illegal movement"
                 }
             }
+            
+            return false;
         }
     }
 }

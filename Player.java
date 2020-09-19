@@ -12,7 +12,7 @@ public class Player
     {
         this.player1 = isPlayer1;
         this.player2 = (!isPlayer1);
-        addchess();
+        //addchess();
     }
 
     public ArrayList<Piece> getChess()
@@ -21,6 +21,7 @@ public class Player
     }
 
     //Initialize the chess piece according to the player's color
+    /*
     public void addchess()
     {
         if(player1 == true)
@@ -80,5 +81,6 @@ public class Player
                 chess.add(new Arrow(i*2, a+1, blue));
             }
         }
-    }
+        
+    }/**/
 }

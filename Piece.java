@@ -55,6 +55,10 @@ public abstract class Piece
 	{ 
 		this.captured = captured; 
 	} 
+	
+	public String getPieceInfo() {
+		return (pieceName + color);
+	}
     
     //Validate move
     public abstract boolean isValidMove(GameBoard board, GameBoardSpot start, GameBoardSpot end);

@@ -2,115 +2,116 @@ public class Plus extends Piece
 {
     
 	//public constructor to initialize the position and color
-    Plus(int x, int y, String color, String pieceName)
+    Plus(int x, int y, String color)
     {
-        super(x,y,color,pieceName);
+    	super(x,y,color);
+    	String pieceName = "PLS";
+    	super.setPieceName(pieceName);
     }
     
-    
-    public boolean move(int x,int y ,String color)//check if the clicked mouse position is an ally or not, if ally then return false else proceed to do checking for obstacles
+    @Override
+    public boolean isValidMove(GameBoard board, GameBoardSpot start, GameBoardSpot end)
     {
-        if (super.getColor() == color)//check if the clicked mouse position is an ally or not, if ally then return false else proceed to do checking for obstacles
-        {
+    	//Check if "end" has same color with "current"
+    	if (super.getColor() == end.getPiece().getColor())
+    	{
             return false;//if the end spot is ally then return false
         }
         else //else check for obstacle
         {
-            int tempx = x - currentx;
-            int tempy = y - currenty;
-            if (tempx == 0 && tempy > 0 ) // meaning moving up
+			int tempx = end.getX() - start.getX();
+			int tempy = end.getY() - start.getY();
+			
+			if (java.lang.Math.abs(tempx) == 1 || java.lang.Math.abs(tempy) == 1) 
+			{
+				return true; //If only move one spot, need no to check
+			} 
+			else if (tempx == 0 && tempy > 0 ) //Y axis moving up
             {
-                if (tempy == 1)
-                {
-                    return true;//making 1 tile step so no need check for obstacle
-                }
-                else
-                {
-                    for (int i = 1; i < tempy ; i++)
-                    {
-                        if (!GameBoardSpot.IsEmpty(x,i))
-                        {
-                            i = 0;//stop the loop when it detects the first obstacle
-                            return false;
-                        }
-                        else if (i == tempy - 1)//if the end of the loop means no obstacle so return true
-                        {
-                            return true;
-                        }
-                    }
-                }
+				try {
+					for (int i = 1; i < tempy ; i++)
+					{
+						if (!board.getSpot(end.getX(), i).isEmpty())
+						{
+							i = 0;//stop the loop when it detects the first obstacle
+							return false;
+						}
+						else if (i == tempy - 1)//if the end of the loop means no obstacle so return true
+						{
+							return true;
+						}					
+					}
+				} catch (Exception e) {
+					System.out.println("Exception: Plus");
+				}
             }
-            else if (tempx == 0 && tempy < 0) //meaning moving down
+            else if (tempx == 0 && tempy < 0) //Y axis moving down
             {
-                if (tempy == -1)
-                {
-                    return true;//making 1 tile step so no need check for obstacle
-                }
-                else
-                {
+            	try {
                     for (int i = -1; i > tempy ; i--)
                     {
-                        if (!GameBoardSpot.IsEmpty(x,i))
-                        {
-                            i = 0;//stop the loop when it detects the first obstacle
-                            return false;
-                        }
-                        else if (i == tempy + 1)//if the end of the loop means no obstacle so return true
-                        {
-                            return true;
-                        }
+                    	if (!board.getSpot(end.getX(), i).isEmpty())
+                    	{
+                    		i = 0;//stop the loop when it detects the first obstacle
+                    		return false;
+                    	}
+                    	else if (i == tempy + 1)//if the end of the loop means no obstacle so return true
+                    	{
+                    		return true;
+                    	}
                     }
-                }
+            	} catch (Exception e) {
+            		System.out.println("Exception: Plus");
+				}
             }
-            else if (tempy == 0 && tempx > 0) //meaning moving right
+            else if (tempy == 0 && tempx > 0) //X axis moving right
             {
-                if (tempx == 1)
-                {
-                    return true;//making 1 tile step so no need check for obstacle
-                }
-                else
-                {
+            	try {
                     for (int i = 1; i < tempx ; i++)
                     {
-                        if (!GameBoardSpot.IsEmpty(i,y))
-                        {
-                            i = 0;//stop the loop when it detects the first obstacle
-                            return false;
-                        }
-                        else if (i == tempx - 1)//if the end of the loop means no obstacle so return true
-                        {
-                            return true;
-                        }
+                    	if (!board.getSpot(i, end.getY()).isEmpty())
+                    	{
+                    		i = 0;//stop the loop when it detects the first obstacle
+                    		return false;
+                    	}
+                    	else if (i == tempx - 1)//if the end of the loop means no obstacle so return true
+                    	{
+                    		return true;
+                    	}
                     }
-                }
+            	} catch (Exception e) {
+            		System.out.println("Exception: Plus");
+				}
+                
             }
             else if (tempy == 0 && tempx < 0) //meaning moving left
             {
-                if (tempx == -1)
-                {
-                    return true;//making 1 tile step so no need check for obstacle
-                }
-                else
-                {
+            	try {
                     for (int i = -1; i > tempx ; i--)
                     {
-                        if (!GameBoardSpot.IsEmpty(i,y))
-                        {
-                            i = 0;//stop the loop when it detects the first obstacle
-                            return false;
-                        }
-                        else if (i == tempx + 1)//if the end of the loop means no obstacle so return true
-                        {
-                            return true;
-                        }
+                    	if (!board.getSpot(i, end.getY()).isEmpty())
+                    	{
+                    		i = 0;//stop the loop when it detects the first obstacle
+                    		return false;
+                    	}
+                    	else if (i == tempx + 1)//if the end of the loop means no obstacle so return true
+                    	{
+                    		return true;
+                    	}
                     }
-                }
+            	} catch (Exception e) {
+					System.out.println("Exception: Plus");
+				}
             }
-            else //if it is not the movement rule of Plus
+            else //If it is not the movement rule of Plus
             {
                 return false;
-                //pop up display "Illegal movement"
+              //pop up display "Illegal movement"
             }
+			
+			//If it is not the movement rule of Plus
+			return false;
         }
+    	
     }
 }

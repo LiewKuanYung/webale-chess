@@ -3,7 +3,7 @@ public class Triangle extends Piece
     Triangle(int x, int y, String color)
     {
     	super(x,y,color);
-    	String pieceName = "Triangle";
+    	String pieceName = "TRI";
     	super.setPieceName(pieceName);
         
     }
@@ -27,17 +27,21 @@ public class Triangle extends Piece
                     }
                     else
                     {
-                        for (int i = 1; i < tempx ; i++)
-                        {
-                            if (!GameBoardSpot.IsEmpty(start.getX()+i,start.getY()+i))
-                            {
-                                i = 0;//stop the loop when it detects the first obstacle
-                                return false;
-                            }
-                            else if (i == tempx - 1) //if the end of the loop means no obstacle so return true
-                            {
-                                return true;
-                            }
+                    	try {
+	                        for (int i = 1; i < tempx ; i++)
+	                        {
+	                            if (!board.getSpot(start.getX()+i,start.getY()+i).isEmpty())
+	                            {
+	                                i = 0;//stop the loop when it detects the first obstacle
+	                                return false;
+	                            }
+	                            else if (i == tempx - 1) //if the end of the loop means no obstacle so return true
+	                            {
+	                                return true;
+	                            }
+	                        }
+                    	}catch(Exception e){
+                    		System.out.println("Exception: Triangle");
                         }
                     }
                 }
@@ -49,17 +53,21 @@ public class Triangle extends Piece
                     }
                     else
                     {
-                        for (int i = -1; i > tempx ; i--)
-                        {
-                            if (!GameBoardSpot.IsEmpty(start.getX()-i,start.getY()-i))
-                            {
-                                i = 0;//stop the loop when it detects the first obstacle
-                                return false;
-                            }
-                            else if (i == tempx + 1) //if the end of the loop means no obstacle so return true
-                            {
-                                return true;
-                            }
+                    	try {
+	                        for (int i = -1; i > tempx ; i--)
+	                        {
+	                            if (!board.getSpot(start.getX()-i,start.getY()-i).isEmpty())
+	                            {
+	                                i = 0;//stop the loop when it detects the first obstacle
+	                                return false;
+	                            }
+	                            else if (i == tempx + 1) //if the end of the loop means no obstacle so return true
+	                            {
+	                                return true;
+	                            }
+	                        }
+                    	}catch(Exception e){
+                    		System.out.println("Exception: Triangle");
                         }
                     }
                 }
@@ -72,17 +80,21 @@ public class Triangle extends Piece
                 }
                 else
                 {
-                    for (int i = 1; i < tempx ; i++)
-                    {
-                        if (!GameBoardSpot.IsEmpty(start.getX()+i,start.getY()-i))
-                        {
-                            i = 0;//stop the loop when it detects the first obstacle
-                            return false;
-                        }
-                        else if (i == tempx - 1) //if the end of the loop means no obstacle so return true
-                        {
-                            return true;
-                        }
+                	try {
+	                    for (int i = 1; i < tempx ; i++)
+	                    {
+	                        if (!board.getSpot(start.getX()+i,start.getY()-i).isEmpty())
+	                        {
+	                            i = 0;//stop the loop when it detects the first obstacle
+	                            return false;
+	                        }
+	                        else if (i == tempx - 1) //if the end of the loop means no obstacle so return true
+	                        {
+	                            return true;
+	                        }
+	                    }
+                	}catch(Exception e){
+                		System.out.println("Exception: Triangle");
                     }
                 }
             }
@@ -94,17 +106,21 @@ public class Triangle extends Piece
                 }
                 else
                 {
-                    for (int i = 1; i < tempy ; i++)
-                    {
-                        if (!GameBoardSpot.IsEmpty(start.getX()-i,start.getY()+i))
-                        {
-                            i = 0;//stop the loop when it detects the first obstacle
-                            return false;
-                        }
-                        else if (i == tempy - 1) //if the end of the loop means no obstacle so return true
-                        {
-                            return true;
-                        }
+                	try {
+	                    for (int i = 1; i < tempy ; i++)
+	                    {
+	                        if (!board.getSpot(start.getX()-i,start.getY()+i).isEmpty())
+	                        {
+	                            i = 0;//stop the loop when it detects the first obstacle
+	                            return false;
+	                        }
+	                        else if (i == tempy - 1) //if the end of the loop means no obstacle so return true
+	                        {
+	                            return true;
+	                        }
+	                    }
+                	}catch(Exception e){
+                		System.out.println("Exception: Triangle");
                     }
                 }
             }
@@ -113,6 +129,7 @@ public class Triangle extends Piece
                 return false;
                 //pop up display "Illegal movement"
             }
+            return false;
         }
     }
 }
