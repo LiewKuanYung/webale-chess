@@ -2,6 +2,8 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
+import java.io.*;
+import java.util.*;
 
 public class GameMenuController {
 	private GameMenu gameMenu;
@@ -42,8 +44,32 @@ public class GameMenuController {
 	}
 	
 	class SaveActionListener implements ActionListener {
-	    public void actionPerformed(ActionEvent e) {
-	    }
+		 GameBoard gbm = new GameBoard();
+		    public void actionPerformed(ActionEvent e) {
+		    	try {
+		    	  FileWriter writer = new FileWriter("saveFile.txt");
+		    	  writer.write("Piece name: SUN = SUN, CHEVRON = CHV, TRIANGLE = TRI, PLUS = PLS, ARROW = ARR\n"+ 
+		    	  "Color: R for Red, B for Blue\n" + "Piece Name + Color\n\n");
+		    	  
+		    	  for(int x = 0; x < 8; x++){
+		    		  for(int y = 0; y < 7; y++){
+			              if(gbm.getSpot(x,y).isEmpty()){
+			                  writer.write("null ");
+			              }
+			              else{
+			            	  writer.write(gbm.getSpot(x,y).getPiece().getPieceName()
+			            			  + gbm.getSpot(x,y).getPiece().getColor() + " ");		             
+			              }
+		    		  }
+		    		  // write new line
+		    		  writer.write("\r\n");  
+		          }		    	
+		            writer.close();
+		    	}
+		    	catch (Exception ex2) {
+		    	    System.out.println("ERROR");
+		    	}
+		   }
 	}
 	
 	class ExitActionListener implements ActionListener {
