@@ -45,8 +45,12 @@ public class GameBoardView extends JPanel {
 	}
 	
 	//first click
-	public void showButtonColor(int x, int y) {
-		btn[y][x].setBackground(new Color(150, 240, 230));
+	public void showButtonColor(int x, int y, String color) {
+		if(color == "R") {
+			btn[y][x].setBackground(new Color(255, 255, 100));
+		} else if (color == "B") {
+			btn[y][x].setBackground(new Color(150, 240, 230));
+		}
 	}
 	
 	public void doNotShowButtonColor(int x, int y) {
@@ -163,6 +167,18 @@ public class GameBoardView extends JPanel {
 	    g2d.drawImage(image, 0, 0, null);
 	    g2d.dispose();
 	    return rotate;
+	}
+	
+	public void clearBoardView() {
+		for (int i=0; i < 8; i++) {
+			System.out.print(i + " ");
+		    for (int j=0; j < 7; j++) {
+		    	System.out.print(j);
+		    	btn[i][j].setIcon(null);
+		    }
+		    System.out.println("end of loop");
+		}
+
 	}
 	
 }

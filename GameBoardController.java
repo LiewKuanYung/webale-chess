@@ -30,6 +30,13 @@ public class GameBoardController{
 		return boardModel;
 	}
 	
+	public void resetBoard() {
+		boardModel.resetBoard();
+		boardView.clearBoardView();
+		this.boardView.setAllPiecesRotatedIcon(boardModel.getRedPieceList());
+		this.boardView.setAllPiecesIcon(boardModel.getBluePieceList());
+	}
+	
 	public class BoardListener implements ActionListener {
 		
 		public Player currentPlayer;
@@ -62,9 +69,10 @@ public class GameBoardController{
 						moveStored[0]=c;
 						moveStored[1]=r;
 						clickCount++;
-						boardView.showButtonColor(moveStored[0],moveStored[1]);
+						String tempColor = boardModel.getSpot(c, r).getPiece().getColor();
+						boardView.showButtonColor(moveStored[0],moveStored[1],tempColor);
 						if(!boardModel.getSpot(c, r).isEmpty()) {
-							showAllValidMove(c, r, true);
+							showAllValidMove(c, r, true,tempColor);
 						}
 					}
 					else if(clickCount == 1) {
@@ -73,7 +81,7 @@ public class GameBoardController{
 						clickCount = 0;
 						boardView.doNotShowButtonColor(moveStored[0],moveStored[1]);	
 						if(!boardModel.getSpot(moveStored[0],moveStored[1]).isEmpty()) {
-							showAllValidMove(moveStored[0],moveStored[1], false);
+							showAllValidMove(moveStored[0],moveStored[1], false, "nothing");
 						}
 						
 						Piece movedPiece = boardModel.getSpot(moveStored[0],moveStored[1]).getPiece();
@@ -112,12 +120,12 @@ public class GameBoardController{
 			}
 		}
 		
-		public void showAllValidMove(int startX, int startY, boolean show) throws Exception {
+		public void showAllValidMove(int startX, int startY, boolean show, String color) throws Exception {
 			for(int y = 0; y < 8; y++){
 				for(int x = 0; x < 7; x++){
 					if(boardModel.getSpot(startX,startY).getPiece().isValidMove(boardModel, boardModel.getSpot(startX,startY), boardModel.getSpot(x,y))) {
 						if(show == true) {
-							boardView.showButtonColor(x,y);
+							boardView.showButtonColor(x,y,color);
 						}else if (show == false){
 							boardView.doNotShowButtonColor(x, y);
 						}

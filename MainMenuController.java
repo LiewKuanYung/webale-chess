@@ -38,12 +38,11 @@ public class MainMenuController {
 		 StartActionListener(MainMenu mainMenu, GameBoardController boardControl, GameBoard gameBoard){
 			 this.mainMenu = mainMenu;
 			 this.boardControl = boardControl;
-			 this.gameBoard = gameBoard;
 		 }
 		public void actionPerformed(ActionEvent e) {
 	
 			gameMenu = new GameMenu();
-			controller = new GameMenuController(gameMenu,gameBoard);
+			controller = new GameMenuController(gameMenu,boardControl);
 			mainMenu.getContentPane().removeAll();
 			mainMenu.getContentPane().repaint();
 			mainMenu.getContentPane().revalidate();

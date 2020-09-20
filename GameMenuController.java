@@ -8,17 +8,17 @@ import java.util.*;
 //Provide a controller for GameMenu class
 public class GameMenuController {
 	public GameMenu gameMenu;
-	public GameBoard gameBoard;
+	public GameBoardController boardController;
 	
 	//GameMenuController constructor
-	public GameMenuController(GameMenu gameMenu, GameBoard gameBoard) {
+	public GameMenuController(GameMenu gameMenu, GameBoardController boardController) {
 		this.gameMenu = gameMenu; 
-		this.gameBoard = gameBoard;
+		this.boardController = boardController;
 		
 		//Add listener to view 
 		gameMenu.i1.addActionListener(new InstructionActionListener());
-		gameMenu.i2.addActionListener(new NewGameActionListener());
-		gameMenu.i3.addActionListener(new SaveActionListener(gameBoard));
+		gameMenu.i2.addActionListener(new NewGameActionListener(boardController));
+		gameMenu.i3.addActionListener(new SaveActionListener(boardController));
 		gameMenu.i4.addActionListener(new ExitActionListener());
 		gameMenu.i5.addActionListener(new DrawActionListener());
 		gameMenu.i6.addActionListener(new ResignActionListener());
@@ -40,56 +40,59 @@ public class GameMenuController {
 	
 	//Provide action listener for instruction button
 	class NewGameActionListener implements ActionListener {
+		GameBoardController boardController;
+		NewGameActionListener(GameBoardController boardController){
+			this.boardController = boardController;
+		}
 	    public void actionPerformed(ActionEvent e) {
-	    	/*
-			intialize a new board
-			*/
+	    	/*intialize a new board*/
+	    	boardController.resetBoard();
 	    }
 	}
 	
 	//Provide action listener for save game button
 	class SaveActionListener implements ActionListener {
-		 public GameBoard gameBoard;
+		 public GameBoardController boardController;
 		 
 		 //SaveActionListener constructor
-		 public SaveActionListener(GameBoard gameBoard) {
-				this.gameBoard = gameBoard; 
+		 public SaveActionListener(GameBoardController boardController) {
+				this.boardController = boardController; 
 		 }
-		    public void actionPerformed(ActionEvent e) {
-		    	try {
-		    	  FileWriter writer = new FileWriter("saveFile.txt");
-		    	  writer.write("Piece name: SUN = SUN, CHEVRON = CHV, TRIANGLE = TRI, PLUS = PLS, ARROW = ARR\n"+ 
-				    	  "Color: R for Red, B for Blue\n" + "Piece Name + Color\n" + "***Null means that there is no chess piece on that spot***\n\n");
-		    	  
-		    		  for(int y = 0; y < 8; y++){
-		    			  for(int x = 0; x < 7; x++){
-			              if(gameBoard.getSpot(x,y).isEmpty()){
-			                  writer.write("null ");
-			              }
-			              else{
-			            	  writer.write(gameBoard.getSpot(x,y).getPiece().getPieceInfo() + " ");		             
-			              }
-		    		  }
-		    		  // write new line
-		    		  writer.write("\r\n");  
-		          }		    	
-		            writer.close();
-		    	}
-		    	catch (Exception ex) {
-		    	    System.out.println("ERROR");
-		    	}
-		   }
+		 public void actionPerformed(ActionEvent e) {
+			 try {
+				 FileWriter writer = new FileWriter("saveFile.txt");
+				 writer.write("Piece name: SUN = SUN, CHEVRON = CHV, TRIANGLE = TRI, PLUS = PLS, ARROW = ARR\n"+ 
+						 "Color: R for Red, B for Blue\n" + "Piece Name + Color\n" + "***Null means that there is no chess piece on that spot***\n\n");
+
+				 for(int y = 0; y < 8; y++){
+					 for(int x = 0; x < 7; x++){
+						 if(boardController.getBoardModel().getSpot(x,y).isEmpty()){
+							 writer.write("null ");
+						 }
+						 else{
+							 writer.write(boardController.getBoardModel().getSpot(x,y).getPiece().getPieceInfo() + " ");		             
+						 }
+					 }
+					 // write new line
+					 writer.write("\r\n");  
+				 }		    	
+				 writer.close();
+			 }
+			 catch (Exception ex) {
+				 System.out.println("ERROR");
+			 }
+		 }
 	}
 	
 	//Provide action listener for exit game button
 	class ExitActionListener implements ActionListener {
 	    public void actionPerformed(ActionEvent	 e) {	
-			int dialogButton = JOptionPane.showConfirmDialog (null, "Are you sure want to exit?","WARNING",JOptionPane.YES_NO_OPTION);
-			if(dialogButton == JOptionPane.YES_OPTION) {
-			System.exit(0);
-			}
-			else {
-			}	
+	    	int dialogButton = JOptionPane.showConfirmDialog (null, "Are you sure want to exit?","WARNING",JOptionPane.YES_NO_OPTION);
+	    	if(dialogButton == JOptionPane.YES_OPTION) {
+	    		System.exit(0);
+	    	}
+	    	else {
+	    	}	
 	    }
 	}
 	
@@ -124,5 +127,4 @@ public class GameMenuController {
 			}
 	    }
 	}
-
 

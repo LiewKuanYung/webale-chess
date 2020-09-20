@@ -55,6 +55,9 @@ public class GameBoard {
 	
 	public void resetBoard ()
 	{	
+		redPieceList.clear();
+		bluePieceList.clear();
+		
 		//Fill up all boxes with null first
 		for(int i = 0; i < 8; i++) //Y axis
 	    {
