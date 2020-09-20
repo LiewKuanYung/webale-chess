@@ -16,7 +16,7 @@ public class GameMenuController {
 		//Add listener to view 
 		gameMenu.i1.addActionListener(new InstructionActionListener());
 		gameMenu.i2.addActionListener(new NewGameActionListener());
-		this.gameMenu.i3.addActionListener(new SaveActionListener(gameBoard));
+		gameMenu.i3.addActionListener(new SaveActionListener(gameBoard));
 		gameMenu.i4.addActionListener(new ExitActionListener());
 		gameMenu.i5.addActionListener(new DrawActionListener());
 		gameMenu.i6.addActionListener(new ResignActionListener());
@@ -55,7 +55,7 @@ public class GameMenuController {
 		    	try {
 		    	  FileWriter writer = new FileWriter("saveFile.txt");
 		    	  writer.write("Piece name: SUN = SUN, CHEVRON = CHV, TRIANGLE = TRI, PLUS = PLS, ARROW = ARR\n"+ 
-		    	  "Color: R for Red, B for Blue\n" + "Piece Name + Color\n\n" + "***Null means there is no chess piece on that spot***\n" );
+				    	  "Color: R for Red, B for Blue\n" + "Piece Name + Color\n\n" + "***Null means that there is no chess piece on that spot***\n");
 		    	  
 		    	  
 		    		  for(int y = 0; y < 8; y++){
