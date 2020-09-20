@@ -33,7 +33,7 @@ public class Main {
 		GameBoardController boardController = new GameBoardController(boardView, boardModel, gameWebale);
 		
 		MainMenu mainMenu = new MainMenu();
-		MainMenuController controller = new MainMenuController(mainMenu, boardController);
+		MainMenuController controller = new MainMenuController(mainMenu, boardController, boardModel);
 
 		
 	}

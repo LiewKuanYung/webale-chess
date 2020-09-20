@@ -6,15 +6,17 @@ import java.io.*;
 import java.util.*;
 
 public class GameMenuController {
-	private GameMenu gameMenu;
+	public GameMenu gameMenu;
+	public GameBoard gameBoard;
 	
-	public GameMenuController(GameMenu gameMenu) {
+	public GameMenuController(GameMenu gameMenu,GameBoard gameBoard) {
 		this.gameMenu = gameMenu; 
+		this.gameBoard = gameBoard;
 		
 		//Add listener to view 
 		gameMenu.i1.addActionListener(new InstructionActionListener());
 		gameMenu.i2.addActionListener(new NewGameActionListener());
-		gameMenu.i3.addActionListener(new SaveActionListener());
+		this.gameMenu.i3.addActionListener(new SaveActionListener(gameBoard));
 		gameMenu.i4.addActionListener(new ExitActionListener());
 		gameMenu.i5.addActionListener(new DrawActionListener());
 		gameMenu.i6.addActionListener(new ResignActionListener());
@@ -44,7 +46,11 @@ public class GameMenuController {
 	}
 	
 	class SaveActionListener implements ActionListener {
-		 GameBoard gbm = new GameBoard();
+		 public GameBoard gbm;
+		 
+		 public SaveActionListener(GameBoard gbm) {
+				this.gbm = gbm; 
+		 }
 		    public void actionPerformed(ActionEvent e) {
 		    	try {
 		    	  FileWriter writer = new FileWriter("saveFile.txt");
@@ -55,11 +61,10 @@ public class GameMenuController {
 		    		  for(int y = 0; y < 8; y++){
 		    			  for(int x = 0; x < 7; x++){
 			              if(gbm.getSpot(x,y).isEmpty()){
-			                  writer.write("NULL ");
+			                  writer.write("null ");
 			              }
 			              else{
-			            	  writer.write(gbm.getSpot(x,y).getPiece().getPieceName()
-			            			  + gbm.getSpot(x,y).getPiece().getColor() + " ");		             
+			            	  writer.write(gbm.getSpot(x,y).getPiece().getPieceInfo() + " ");		             
 			              }
 		    		  }
 		    		  // write new line
@@ -74,7 +79,7 @@ public class GameMenuController {
 	}
 	
 	class ExitActionListener implements ActionListener {
-	    public void actionPerformed(ActionEvent e) {
+	    public void actionPerformed(ActionEvent	 e) {
 	    		
 			int dialogButton = JOptionPane.showConfirmDialog (null, "Are you sure want to exit?","WARNING",JOptionPane.YES_NO_OPTION);
 			if(dialogButton == JOptionPane.YES_OPTION) {

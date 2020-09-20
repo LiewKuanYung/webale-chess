@@ -2,18 +2,23 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
+import java.io.*;
+import java.util.*;
 
 public class MainMenuController {
 	 public MainMenu mainMenu;
 	 public GameBoardController boardControl;
+	 public GameBoard gameBoard;
 
-	public MainMenuController(MainMenu mainMenu, GameBoardController boardControl) {
+	public MainMenuController(MainMenu mainMenu, GameBoardController boardControl, GameBoard gameBoard) {
 		this.mainMenu = mainMenu;
 		this.boardControl = boardControl;
+		this.gameBoard = gameBoard;
 		
 		//Add listener to view 
-		mainMenu.btnStart.addActionListener(new StartActionListener(mainMenu, boardControl));	
+		mainMenu.btnStart.addActionListener(new StartActionListener(mainMenu, boardControl,gameBoard));	
 		mainMenu.btnInstruction.addActionListener(new InstructionActionListener());
+		mainMenu.btnLoadGame.addActionListener(new LoadActionListener());
 		mainMenu.btnExitGame.addActionListener(new TerminateActionListener());
 	}
 }
@@ -24,15 +29,17 @@ public class MainMenuController {
 		 GameMenu gameMenu;
 		 GameMenuController controller;
 		 GameBoardController boardControl;
+		 GameBoard gameBoard;
 		 
-		 StartActionListener(MainMenu mainMenu, GameBoardController boardControl){
+		 StartActionListener(MainMenu mainMenu, GameBoardController boardControl, GameBoard gameBoard){
 			 this.mainMenu = mainMenu;
 			 this.boardControl = boardControl;
+			 this.gameBoard = gameBoard;
 		 }
 		public void actionPerformed(ActionEvent e) {
 	
 			gameMenu = new GameMenu();
-			controller = new GameMenuController(gameMenu);
+			controller = new GameMenuController(gameMenu,gameBoard);
 			mainMenu.getContentPane().removeAll();
 			/*
 			 //add board here//
@@ -45,6 +52,28 @@ public class MainMenuController {
 		}
 	}
 	
+	
+	class LoadActionListener implements ActionListener{
+		GameBoard gbm = new GameBoard();
+		public void actionPerformed(ActionEvent e) {
+			try {
+			File file = new File("saveFile.txt");
+	        Scanner scan = new Scanner(file);
+	        scan.skip("Piece name: SUN = SUN, CHEVRON = CHV, TRIANGLE = TRI, PLUS = PLS, ARROW = ARR\n"+ 
+			    	  "Color: R for Red, B for Blue\n" + "Piece Name + Color\n\n" + "***Null means there is no chess piece on that spot***\n");
+	    	
+	        for(int y = 0; y < 8; y++){
+	    		  for(int x = 0; x < 7; x++){
+	    			  
+	    			scan.next();
+	    		  } 
+			}
+			}
+			catch(Exception ex){
+				System.out.println("Error.");
+			}
+		}
+	}
 	class TerminateActionListener implements ActionListener{
 		 
 		public void actionPerformed(ActionEvent e) {
