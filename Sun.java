@@ -26,7 +26,6 @@ public class Sun extends Piece
 	        }
     	}
     	
-    	System.out.println("Plus Check Point 2");
     	int tempx = end.getX() - start.getX();
     	int tempy = end.getY() - start.getY();
 

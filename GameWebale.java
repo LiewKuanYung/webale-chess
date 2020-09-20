@@ -27,14 +27,8 @@ public class GameWebale {
 			System.out.println("Current Player Check Point p2");
 			this.currentTurn = p2; 
 		} 
-
 		gameMovesPlayed.clear(); 
 	} 
-	
-	public Player getCurrentPlayer() {
-		return currentTurn;
-	}
-
 
 	public boolean playerMove(Player player, int startX, int startY, 
 			int endX, int endY) 
@@ -108,8 +102,7 @@ public class GameWebale {
 				System.out.println("Blue Lost");
 				//this.setStatus(GameStatus.BLACK_WIN); 
 			} 
-		} 
-		
+		}
 		
 		// move piece from the start box to end box 
 		move.getEnd().setPiece(move.getStart().getPiece()); 

@@ -49,34 +49,34 @@ public class GameBoard {
 	            boxes[i][j] = new GameBoardSpot (j , i ,null);
 	        } 
 		} 
-		int a = 0;
-		int b = 7;
+		int r = 7; //Red
+		int b = 0; //blue
 		String color1 = "R";
 		String color2 = "B";
 		
 		//Initialize Red Player
-		redPieceList.add(new Sun(3, a, color1));
-		redPieceList.add(new Chevron(2, a, color1));
-		redPieceList.add(new Chevron(4, a, color1));
-		redPieceList.add(new Triangle(1, a, color1));
-		redPieceList.add(new Triangle(5, a, color1));
-		redPieceList.add(new Plus(0, a, color1));
-		redPieceList.add(new Plus(6, a, color1));
+		redPieceList.add(new Sun(3, r, color1));
+		redPieceList.add(new Chevron(2, r, color1));
+		redPieceList.add(new Chevron(4, r, color1));
+		redPieceList.add(new Triangle(1, r, color1));
+		redPieceList.add(new Triangle(5, r, color1));
+		redPieceList.add(new Plus(0, r, color1));
+		redPieceList.add(new Plus(6, r, color1));
         for(int i=0; i<4 ;i++)
         {
-        	redPieceList.add(new Arrow(i*2, a+1, color1));
+        	redPieceList.add(new Arrow(i*2, r-1, color1));
         }
 		
-		boxes[a][3].setPiece(redPieceList.get(0));
-		boxes[a][2].setPiece(redPieceList.get(1));
-		boxes[a][4].setPiece(redPieceList.get(2));
-		boxes[a][1].setPiece(redPieceList.get(3));
-		boxes[a][5].setPiece(redPieceList.get(4));
-		boxes[a][0].setPiece(redPieceList.get(5));
-		boxes[a][6].setPiece(redPieceList.get(6));
+		boxes[r][3].setPiece(redPieceList.get(0));
+		boxes[r][2].setPiece(redPieceList.get(1));
+		boxes[r][4].setPiece(redPieceList.get(2));
+		boxes[r][1].setPiece(redPieceList.get(3));
+		boxes[r][5].setPiece(redPieceList.get(4));
+		boxes[r][0].setPiece(redPieceList.get(5));
+		boxes[r][6].setPiece(redPieceList.get(6));
         for(int i=0; i<4 ;i++)
         {
-        	boxes[a+1][i*2].setPiece(redPieceList.get(7+i));
+        	boxes[r-1][i*2].setPiece(redPieceList.get(7+i));
         }
         
         //Initialize Blue Player
@@ -89,7 +89,7 @@ public class GameBoard {
 		bluePieceList.add(new Plus(6, b, color2));
         for(int i=0; i<4 ;i++)
         {
-        	bluePieceList.add(new Arrow(i*2, b-1, color2));
+        	bluePieceList.add(new Arrow(i*2, b+1, color2));
         }
 		boxes[b][3].setPiece(bluePieceList.get(0));
 		boxes[b][2].setPiece(bluePieceList.get(1));
@@ -98,10 +98,10 @@ public class GameBoard {
 		boxes[b][5].setPiece(bluePieceList.get(4));
 		boxes[b][0].setPiece(bluePieceList.get(5));
 		boxes[b][6].setPiece(bluePieceList.get(6));
-		boxes[b-1][0].setPiece(bluePieceList.get(7));
+		boxes[b+1][0].setPiece(bluePieceList.get(7));
         for(int i=0; i<4 ;i++)
         {
-        	boxes[b-1][i*2].setPiece(bluePieceList.get(7+i));
+        	boxes[b+1][i*2].setPiece(bluePieceList.get(7+i));
         }
 	} 
 } 

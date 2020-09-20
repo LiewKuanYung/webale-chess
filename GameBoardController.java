@@ -9,6 +9,7 @@ public class GameBoardController{
 	
 	public int[] moveStored = new int[4];
 	public int clickCount = 0;
+	public int moveCount = 0;
 	
 	
 	public GameBoardController(GameBoardView boardView, GameBoard boardModel, GameWebale gameWebale) {
@@ -17,7 +18,7 @@ public class GameBoardController{
 		this.gameWebale = gameWebale;
 		this.boardView.setPieceRotatedIcon(boardModel.getRedPieceList());
 		this.boardView.setPieceIcon(boardModel.getBluePieceList());
-		this.boardView.addBoardListener(new BoardListener(boardModel, gameWebale));
+		this.boardView.addBoardListener(new BoardListener(boardModel));
 		
 	}
 	
@@ -31,14 +32,12 @@ public class GameBoardController{
 	
 	public class BoardListener implements ActionListener {
 		
-		GameWebale gameWebale;
 		GameBoard boardModel;
 		public Player currentPlayer;
 		public Player[] players = new Player[2];
 		
-		BoardListener(GameBoard boardModel, GameWebale gameWebale){
+		BoardListener(GameBoard boardModel){
 			this.boardModel = boardModel;
-			this.gameWebale = gameWebale;
 			
 			try {
 				players[0] = new Player(true, "R");
@@ -67,7 +66,6 @@ public class GameBoardController{
 						moveStored[0]=c;
 						moveStored[1]=r;
 						clickCount++;
-						System.out.println("Click Counter: "+clickCount);
 					}
 					else if(clickCount == 1) {
 						moveStored[2]=c;
@@ -75,26 +73,29 @@ public class GameBoardController{
 						clickCount = 0;
 						
 						System.out.println("Check Point: Board controller: init player move");
-						Piece endPiece = boardModel.getSpot(moveStored[0],moveStored[1]).getPiece();
-						boolean test = gameWebale.playerMove(currentPlayer, moveStored[0],moveStored[1],moveStored[2],moveStored[3]);
+						Piece movedPiece = boardModel.getSpot(moveStored[0],moveStored[1]).getPiece();
+						boolean isValidPlayerMove = gameWebale.playerMove(currentPlayer, moveStored[0],moveStored[1],moveStored[2],moveStored[3]);
 						System.out.println("Check Point: Board controller: finish player move");
 						
-						if(test) {
+						//If player move is valid then reset board icon and switch player
+						if(isValidPlayerMove) {
+							moveCount++;
 							System.out.println("Check Point: Board controller change player");
 							if (this.currentPlayer == players[0]) { 
-								boardView.setButtonIcon(moveStored[0], moveStored[1], endPiece);
+								boardView.setButtonIcon(moveStored[0], moveStored[1], movedPiece);
 								System.out.println("reset icon and change to player[1]");
 								this.currentPlayer = players[1]; 
 							} 
 							else { 
-								boardView.setButtonIcon(moveStored[0], moveStored[1], endPiece);
+								boardView.setButtonIcon(moveStored[0], moveStored[1], movedPiece);
 								System.out.println("reset icon and change to player[1]");
 								this.currentPlayer = players[0]; 
 							} 
 						}else {
-							System.out.println("??? Not Successful ???");
+							System.out.println("????? Fail ?????");
 						}
 						
+						//Clear the moveStroed array
 						Arrays.fill(moveStored, -1);				
 						System.out.println("Click Counter: "+clickCount +"\n\n");
 					}

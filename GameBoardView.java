@@ -22,14 +22,13 @@ public class GameBoardView extends JPanel {
 	void initComponent() {
 		
 		gameBoard.setPreferredSize(new Dimension(550,550));
-		
 		for (int i=0; i < btn.length; i++) { //Row //Y axis
 		    for (int j=0; j < btn[i].length; j++) { //Column //X axis
-		    	btn[i][j] = new GameBoardButton(j, i);
-		        btn[i][j].setBackground(Color.WHITE);
-		        btn[i][j].setPreferredSize(new Dimension(50, 50));
+		    	btn[btn.length - 1 - i ][j] = new GameBoardButton(j, btn.length - 1 - i ); //button( X Y )
+		        btn[btn.length - 1 - i ][j].setBackground(Color.WHITE);
+		        btn[btn.length - 1 - i ][j].setPreferredSize(new Dimension(50, 50));
 		        gameBoard.setBackground(Color.yellow);
-		        gameBoard.add(btn[i][j]);
+		        gameBoard.add(btn[btn.length - 1 - i ][j]);
 		    }
         }
 		this.add(gameBoard);
@@ -39,7 +38,7 @@ public class GameBoardView extends JPanel {
 	void addBoardListener(ActionListener listenClickedBtn) {
 		for (int i=0; i < btn.length; i++) {
 		    for (int j=0; j < btn[i].length; j++) {
-		    	btn[i][j].addActionListener(listenClickedBtn);
+		    	btn[btn.length -1 -i][j].addActionListener(listenClickedBtn);
 		    }
 		}
 	}
@@ -47,7 +46,7 @@ public class GameBoardView extends JPanel {
 	public void setButtonIcon(int startX, int startY, Piece endPiece) {
 		System.out.println("start setButtonIcon");
 		btn[startY][startX].setIcon(null);
-		System.out.println(endPiece.getColor());
+		System.out.println(endPiece.getPieceInfo());
 		System.out.println(endPiece.getCurrentX());
 		System.out.println(endPiece.getCurrentY());
 		try {

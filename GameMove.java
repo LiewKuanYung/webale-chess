@@ -37,4 +37,8 @@ public class GameMove {
 	public Piece getPieceCaptured() {
 		return pieceCaptured;
 	}
+	
+	public String getGameMoveInfo() {
+		return pieceMoved.getPieceInfo() + end.getX() + end.getY();
+	}
 }

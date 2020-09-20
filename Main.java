@@ -27,7 +27,7 @@ public class Main {
 			player1 = new Player(true, "R");
 			player2 = new Player(false, "B");
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("Exception: Main.java Player setting");
 		}
 		GameWebale gameWebale = new GameWebale(boardModel, player1, player2);
 		GameBoardController boardController = new GameBoardController(boardView, boardModel, gameWebale);

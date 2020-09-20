@@ -14,81 +14,94 @@ public class Arrow extends Piece
     	
     	if (color == "R")//top part
     	{
-    	    boolean direction = false; // facing to South
+    	    this.direction = false; // facing to South
     	}
     	else if (color == "B")//bottom part
     	{
-    	    boolean direction = true; //facing to North
+    	    this.direction = true; //facing to North
     	}
     }
+    
     public boolean isValidMove(GameBoard board, GameBoardSpot start, GameBoardSpot end)//the input from click mouse position
     {
-        if (super.getColor() == end.getPiece().getColor())//check if the clicked mouse position is an ally or not, if ally then return false else proceed to do checking for obstacles
-        {
-            return false;//if the end spot is ally then return false
-        }
-        else //else check for obstacle
-        {
-            int tempx = end.getX() - start.getX();
-            int tempy = end.getY() - start.getY();
-            if (direction)
-            {
-                if (tempy == 1 && tempx ==0)
-                {
-                    return true;//making 1 tile step so no need check for obstacle
-                }
-                else if (tempy == 2 && tempx ==0)
-                {
-                    try {
-						if (!board.getSpot(end.getX(),end.getY()-1).isEmpty())
-						{
-						    return false;
-						}
-						else
-						{
-						    return true;
-						}
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-                }
-                else //if it is not the movement rule of Arrow
-                {
-                    return false;
-                    //pop up display "Illegal movement"
-                }
-            }
-            else if (!direction)
-            {
-                if (tempy == -1 && tempx ==0)
-                {
-                    return true;//making 1 tile step so no need check for obstacle
-                }
-                else if (tempy == -2 && tempx ==0)
-                {
-                    try {
-						if (!board.getSpot(end.getX(),end.getY()+1).isEmpty())
-						{
-						    return false;
-						}
-						else
-						{
-						    return true;
-						}
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-                }
-                else //if it is not the movement rule of Arrow
-                {
-                    return false;
-                    //pop up display "Illegal movement"
-                }
-            }
-            
-            return false;
-        }
+    	if (end.getPiece() != null) {
+	        if (super.getColor() == end.getPiece().getColor())//check if the clicked mouse position is an ally or not, if ally then return false else proceed to do checking for obstacles
+	        {
+	            return false;//if the end spot is ally then return false
+	        }
+    	}
+        
+    	//else check for obstacle
+    	int tempx = end.getX() - start.getX();
+    	int tempy = end.getY() - start.getY();
+    	
+    	if (direction && super.getCurrentY() == 7){
+    		direction = false;
+    	} else if (!direction && super.getCurrentY() == 0) {
+    		direction = true;
+    	}
+    	
+    	if (direction)
+    	{
+    		if (tempy == 1 && tempx ==0)
+    		{
+    			super.setCurrentXY(super.getCurrentX() + tempx, super.getCurrentY()+tempy);
+    			return true;//making 1 tile step so no need check for obstacle
+    		}
+    		else if (tempy == 2 && tempx ==0)
+    		{
+    			try {
+    				if (!board.getSpot(end.getX(),end.getY()-1).isEmpty())
+    				{
+    					return false;
+    				}
+    				else
+    				{
+    					super.setCurrentXY(super.getCurrentX() + tempx, super.getCurrentY()+tempy);
+    					return true;
+    				}
+    			} catch (Exception e) {
+    				// TODO Auto-generated catch block
+    				e.printStackTrace();
+    			}
+    		}
+    		else //if it is not the movement rule of Arrow
+    		{
+    			return false;
+    			//pop up display "Illegal movement"
+    		}
+    	}
+    	else if (!direction)
+    	{
+    		if (tempy == -1 && tempx ==0)
+    		{
+    			super.setCurrentXY(super.getCurrentX() + tempx, super.getCurrentY()+tempy);
+    			return true;//making 1 tile step so no need check for obstacle
+    		}
+    		else if (tempy == -2 && tempx ==0)
+    		{
+    			try {
+    				if (!board.getSpot(end.getX(),end.getY()+1).isEmpty())
+    				{
+    					return false;
+    				}
+    				else
+    				{
+    					super.setCurrentXY(super.getCurrentX() + tempx, super.getCurrentY()+tempy);
+    					return true;
+    				}
+    			} catch (Exception e) {
+    				// TODO Auto-generated catch block
+    				e.printStackTrace();
+    			}
+    		}
+    		else //if it is not the movement rule of Arrow
+    		{
+    			return false;
+    			//pop up display "Illegal movement"
+    		}
+    	}
+
+    	return false;
     }
 }
