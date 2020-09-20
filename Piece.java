@@ -69,12 +69,14 @@ public abstract class Piece
 	public String getPieceInfo() {
 		return (pieceName + color);
 	}
+	
+	public void move(int startX, int startY, int endX, int endY) {
+    	int tempx = endX - startX;
+    	int tempy = endY - startY;
+    	setCurrentXY((getCurrentX()+tempx), (getCurrentY()+tempy));
+    }
     
     //Validate move
-    public abstract boolean isValidMove(GameBoard board, GameBoardSpot start, GameBoardSpot end);
-	
-    //Move the piece
-    //public abstract void move(GameBoard board, Spot start, Spot end);
+    public abstract boolean isValidMove(GameBoard board, GameBoardSpot start, GameBoardSpot end);   
     
-
 }

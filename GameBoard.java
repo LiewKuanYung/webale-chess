@@ -37,15 +37,16 @@ public class GameBoard {
 		return redPieceList;
 	}
 	
-	public void changePlusAndTriangle(Piece...pieces) {
-		for(int i = 0; i<pieces.length; i++) {
-			if(pieces[i] instanceof Plus) {
-				System.out.print(pieces[i].getPieceInfo() + pieces[i].getCurrentX() 
-						+ pieces[i].getCurrentY()+ "Is Instance Of Plus");
-			} else if (pieces[i] instanceof Triangle) {
-				System.out.print(pieces[i].getPieceInfo() + pieces[i].getCurrentX() 
-						+ pieces[i].getCurrentY()+ "Is Instance Of Triange");
-			}
+	public void changePlusAndTriangle(int x, int y) throws Exception  {
+		String color = getSpot(x, y).getPiece().getColor();
+		if(getSpot(x, y).getPiece() instanceof Plus) {
+			getSpot(x,y).setPiece( new Triangle(x, y, color) );
+			System.out.print("Change Plus to Triangle");
+		} else if (getSpot(x, y).getPiece() instanceof Triangle) {
+			getSpot(x,y).setPiece( new Plus(x, y, color) );
+			System.out.print("Change Plus to Triangle");
+		} else {
+			throw new Exception("GameBoard Exception: changePlusAndTriangle");
 		}
 		
 	}
@@ -116,5 +117,5 @@ public class GameBoard {
         {
         	boxes[b+1][i*2].setPiece(bluePieceList.get(7+i));
         }
-	} 
+	}
 } 

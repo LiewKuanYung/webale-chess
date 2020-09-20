@@ -31,7 +31,6 @@ public class Sun extends Piece
 
     	if (java.lang.Math.abs(tempx) <= 1 && java.lang.Math.abs(tempy) <= 1)
     	{
-    		super.setCurrentXY((super.getCurrentX()+tempx), (super.getCurrentY()+tempy));
     		return true;
     	}
     	else //if it is not the movement rule of Sun

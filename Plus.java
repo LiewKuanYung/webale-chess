@@ -37,7 +37,6 @@ public class Plus extends Piece
 
     	if ( (abstempx == 1 && abstempy == 0) || (abstempx == 0 && abstempy == 1) ) 
     	{
-    		super.setCurrentXY(super.getCurrentX() + tempx, super.getCurrentY()+tempy);
     		return true; //If only move one spot, need no to check
     	} 
     	else if (tempx == 0 && tempy > 0 ) //Y axis moving up
@@ -52,7 +51,6 @@ public class Plus extends Piece
     				}
     				else if (i == tempy - 1)//if the end of the loop means no obstacle so return true
     				{
-    					super.setCurrentXY(super.getCurrentX() + tempx, super.getCurrentY()+tempy);
     					return true;
     				}					
     			}
@@ -72,7 +70,6 @@ public class Plus extends Piece
     				}
     				else if (i == tempy + 1)//if the end of the loop means no obstacle so return true
     				{
-    					super.setCurrentXY(super.getCurrentX() + tempx, super.getCurrentY()+tempy);
     					return true;
     				}
     			}
@@ -92,7 +89,6 @@ public class Plus extends Piece
     				}
     				else if (i == tempx - 1)//if the end of the loop means no obstacle so return true
     				{
-    					super.setCurrentXY(super.getCurrentX() + tempx, super.getCurrentY()+tempy);
     					return true;
     				}
     			}
@@ -113,7 +109,6 @@ public class Plus extends Piece
     				}
     				else if (i == tempx + 1)//if the end of the loop means no obstacle so return true
     				{
-    					super.setCurrentXY(super.getCurrentX() + tempx, super.getCurrentY()+tempy);
     					return true;
     				}
     			}

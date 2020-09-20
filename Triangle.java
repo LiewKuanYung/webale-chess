@@ -31,7 +31,6 @@ public class Triangle extends Piece
     		{
     			if (end.getX() == start.getX() + 1)
     			{
-    				super.setCurrentXY(super.getCurrentX() + tempx, super.getCurrentY()+tempy);
     				return true; //making 1 tile step so no need check for obstacle
     			}
     			else
@@ -46,7 +45,6 @@ public class Triangle extends Piece
     						}
     						else if (i == tempx - 1) //if the end of the loop means no obstacle so return true
     						{
-    							super.setCurrentXY(super.getCurrentX() + tempx, super.getCurrentY()+tempy);
     							return true;
     						}
     					}
@@ -59,7 +57,6 @@ public class Triangle extends Piece
     		{
     			if (end.getY() == start.getY() - 1)
     			{
-    				super.setCurrentXY(super.getCurrentX() + tempx, super.getCurrentY()+tempy);
     				return true; //making 1 tile step so no need check for obstacle
     			}
     			else
@@ -74,7 +71,6 @@ public class Triangle extends Piece
     						}
     						else if (i == tempx + 1) //if the end of the loop means no obstacle so return true
     						{
-    							super.setCurrentXY(super.getCurrentX() + tempx, super.getCurrentY()+tempy);
     							return true;
     						}
     					}
@@ -89,7 +85,6 @@ public class Triangle extends Piece
     		if(tempy < 0) {
 	    		if (end.getX() == start.getX() + 1)
 	    		{
-	    			super.setCurrentXY(super.getCurrentX() + tempx, super.getCurrentY()+tempy);
 	    			return true; //making 1 tile step so no need check for obstacle
 	    		}
 	    		else
@@ -104,7 +99,6 @@ public class Triangle extends Piece
 	    					}
 	    					else if (i == tempx - 1) //if the end of the loop means no obstacle so return true
 	    					{
-	    						super.setCurrentXY(super.getCurrentX() + tempx, super.getCurrentY()+tempy);
 	    						return true;
 	    					}
 	    				}
@@ -116,7 +110,6 @@ public class Triangle extends Piece
     		else if (tempy > 0) {//meaning the top left
 	    		if (end.getY() == start.getY() + 1)
 	    		{
-	    			super.setCurrentXY(super.getCurrentX() + tempx, super.getCurrentY()+tempy);
 	    			return true; //making 1 tile step so no need check for obstacle
 	    		}
 	    		else
@@ -131,7 +124,6 @@ public class Triangle extends Piece
 	    					}
 	    					else if (i == tempy - 1) //if the end of the loop means no obstacle so return true
 	    					{
-	    						super.setCurrentXY(super.getCurrentX() + tempx, super.getCurrentY()+tempy);
 	    						return true;
 	    					}
 	    				}

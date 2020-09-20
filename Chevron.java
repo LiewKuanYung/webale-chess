@@ -28,7 +28,6 @@ public class Chevron extends Piece
     	int checktempy = java.lang.Math.abs(tempy);
     	if (checktempx == 1 && checktempy == 2 || checktempx == 2 && checktempy == 1)
     	{
-    		super.setCurrentXY(super.getCurrentX() + tempx, super.getCurrentY()+ tempy);
     		return true;
     	}
     	else //if it is not the movement rule of Chevron

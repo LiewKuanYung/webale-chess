@@ -54,7 +54,6 @@ public class Arrow extends Piece
     	{
     		if (tempy == 1 && tempx ==0)
     		{
-    			super.setCurrentXY(super.getCurrentX() + tempx, super.getCurrentY()+tempy);
     			return true;//making 1 tile step so no need check for obstacle
     		}
     		else if (tempy == 2 && tempx ==0)
@@ -66,7 +65,6 @@ public class Arrow extends Piece
     				}
     				else
     				{
-    					super.setCurrentXY(super.getCurrentX() + tempx, super.getCurrentY()+tempy);
     					return true;
     				}
     			} catch (Exception e) {
@@ -84,7 +82,6 @@ public class Arrow extends Piece
     	{
     		if (tempy == -1 && tempx ==0)
     		{
-    			super.setCurrentXY(super.getCurrentX() + tempx, super.getCurrentY()+tempy);
     			return true;//making 1 tile step so no need check for obstacle
     		}
     		else if (tempy == -2 && tempx ==0)
@@ -96,7 +93,6 @@ public class Arrow extends Piece
     				}
     				else
     				{
-    					super.setCurrentXY(super.getCurrentX() + tempx, super.getCurrentY()+tempy);
     					return true;
     				}
     			} catch (Exception e) {
