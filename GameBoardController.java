@@ -20,7 +20,6 @@ public class GameBoardController{
 		this.boardView.setAllPiecesRotatedIcon(boardModel.getRedPieceList());
 		this.boardView.setAllPiecesIcon(boardModel.getBluePieceList());
 		this.boardView.addBoardListener(new BoardListener());
-		
 	}
 	
 	public GameBoardView getBoardView() {

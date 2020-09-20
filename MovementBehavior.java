@@ -1,6 +1,4 @@
 interface MovementBehavior
 {
-    public boolean isValidMove(int x,int y);
-    
-    public boolean drawValidMove();
+    public boolean checkValidMove(GameBoard board, GameBoardSpot start, GameBoardSpot end);
 }
