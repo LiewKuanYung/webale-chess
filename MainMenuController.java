@@ -5,12 +5,16 @@ import javax.swing.event.*;
 import java.io.*;
 import java.util.*;
 
+//Provide a controller class for MainMenu class
 public class MainMenuController {
+	
 	 public MainMenu mainMenu;
 	 public GameBoardController boardControl;
 	 public GameBoard gameBoard;
-
-	public MainMenuController(MainMenu mainMenu, GameBoardController boardControl, GameBoard gameBoard) {
+	 
+	 //MainMenuController constructor
+	 public MainMenuController(MainMenu mainMenu, GameBoardController boardControl, GameBoard gameBoard) {
+		 
 		this.mainMenu = mainMenu;
 		this.boardControl = boardControl;
 		this.gameBoard = gameBoard;
@@ -22,7 +26,7 @@ public class MainMenuController {
 		mainMenu.btnExitGame.addActionListener(new TerminateActionListener());
 	}
 }
-
+	//Provide action listener to start button
 	class StartActionListener implements ActionListener{
 		 
 		 MainMenu mainMenu;
@@ -41,10 +45,6 @@ public class MainMenuController {
 			gameMenu = new GameMenu();
 			controller = new GameMenuController(gameMenu,gameBoard);
 			mainMenu.getContentPane().removeAll();
-			/*
-			 //add board here//
-			mainMenu.getContentPane().add();
-			*/
 			mainMenu.getContentPane().repaint();
 			mainMenu.getContentPane().revalidate();
 			mainMenu.setJMenuBar(gameMenu);
@@ -52,7 +52,7 @@ public class MainMenuController {
 		}
 	}
 	
-	
+	//Provide action listener to load game button
 	class LoadActionListener implements ActionListener{
 		GameBoard gbm = new GameBoard();
 		public void actionPerformed(ActionEvent e) {
@@ -63,8 +63,7 @@ public class MainMenuController {
 			    	  "Color: R for Red, B for Blue\n" + "Piece Name + Color\n\n" + "***Null means there is no chess piece on that spot***\n");
 	    	
 	        for(int y = 0; y < 8; y++){
-	    		  for(int x = 0; x < 7; x++){
-	    			  
+	    		  for(int x = 0; x < 7; x++){  
 	    			scan.next();
 	    		  } 
 			}
@@ -74,6 +73,8 @@ public class MainMenuController {
 			}
 		}
 	}
+	
+	//Provide action listener to exit game button
 	class TerminateActionListener implements ActionListener{
 		 
 		public void actionPerformed(ActionEvent e) {

@@ -5,11 +5,13 @@ import javax.swing.event.*;
 import java.io.*;
 import java.util.*;
 
+//Provide a controller for GameMenu class
 public class GameMenuController {
 	public GameMenu gameMenu;
 	public GameBoard gameBoard;
 	
-	public GameMenuController(GameMenu gameMenu,GameBoard gameBoard) {
+	//GameMenuController constructor
+	public GameMenuController(GameMenu gameMenu, GameBoard gameBoard) {
 		this.gameMenu = gameMenu; 
 		this.gameBoard = gameBoard;
 		
@@ -21,9 +23,8 @@ public class GameMenuController {
 		gameMenu.i5.addActionListener(new DrawActionListener());
 		gameMenu.i6.addActionListener(new ResignActionListener());
 	}	
-
 }
-
+	//Provide action listener for instruction button
 	class InstructionActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			JOptionPane.showMessageDialog(null,"Hello, Welcome to Webale Chess Game.\n\nInstruction: \n\n"
@@ -37,6 +38,7 @@ public class GameMenuController {
 		}
 	}
 	
+	//Provide action listener for instruction button
 	class NewGameActionListener implements ActionListener {
 	    public void actionPerformed(ActionEvent e) {
 	    	/*
@@ -45,26 +47,27 @@ public class GameMenuController {
 	    }
 	}
 	
+	//Provide action listener for save game button
 	class SaveActionListener implements ActionListener {
-		 public GameBoard gbm;
+		 public GameBoard gameBoard;
 		 
-		 public SaveActionListener(GameBoard gbm) {
-				this.gbm = gbm; 
+		 //SaveActionListener constructor
+		 public SaveActionListener(GameBoard gameBoard) {
+				this.gameBoard = gameBoard; 
 		 }
 		    public void actionPerformed(ActionEvent e) {
 		    	try {
 		    	  FileWriter writer = new FileWriter("saveFile.txt");
 		    	  writer.write("Piece name: SUN = SUN, CHEVRON = CHV, TRIANGLE = TRI, PLUS = PLS, ARROW = ARR\n"+ 
-				    	  "Color: R for Red, B for Blue\n" + "Piece Name + Color\n\n" + "***Null means that there is no chess piece on that spot***\n");
-		    	  
+				    	  "Color: R for Red, B for Blue\n" + "Piece Name + Color\n" + "***Null means that there is no chess piece on that spot***\n\n");
 		    	  
 		    		  for(int y = 0; y < 8; y++){
 		    			  for(int x = 0; x < 7; x++){
-			              if(gbm.getSpot(x,y).isEmpty()){
+			              if(gameBoard.getSpot(x,y).isEmpty()){
 			                  writer.write("null ");
 			              }
 			              else{
-			            	  writer.write(gbm.getSpot(x,y).getPiece().getPieceInfo() + " ");		             
+			            	  writer.write(gameBoard.getSpot(x,y).getPiece().getPieceInfo() + " ");		             
 			              }
 		    		  }
 		    		  // write new line
@@ -78,19 +81,19 @@ public class GameMenuController {
 		   }
 	}
 	
+	//Provide action listener for exit game button
 	class ExitActionListener implements ActionListener {
-	    public void actionPerformed(ActionEvent	 e) {
-	    		
+	    public void actionPerformed(ActionEvent	 e) {	
 			int dialogButton = JOptionPane.showConfirmDialog (null, "Are you sure want to exit?","WARNING",JOptionPane.YES_NO_OPTION);
 			if(dialogButton == JOptionPane.YES_OPTION) {
 			System.exit(0);
 			}
 			else {
-			}
-			
+			}	
 	    }
 	}
 	
+	//Provide action listener for offer draw button
 	class DrawActionListener implements ActionListener {
 	    public void actionPerformed(ActionEvent e) {
 	    	int dialogButton_1 = JOptionPane.showConfirmDialog (null, "Do you want to accept the draw request?","WARNING",JOptionPane.YES_NO_OPTION);
@@ -106,6 +109,7 @@ public class GameMenuController {
 	    }
 	}
 	
+	//Provide action listener for resign button
 	class ResignActionListener implements ActionListener {
 	    public void actionPerformed(ActionEvent e) {
 	    	int dialogButton_1 = JOptionPane.showConfirmDialog (null, "Are you sure want to resign the game?","WARNING",JOptionPane.YES_NO_OPTION);

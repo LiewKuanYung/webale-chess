@@ -1,11 +1,13 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.*;  
+
+//A view class for game menu
 public class GameMenu extends JMenuBar {  
 	JMenu menu1,menu2;
 	JMenuItem i1, i2, i3, i4, i5,i6;  
 	
+	//GameMenu constructor
 	GameMenu() {  
      
 		menu1=new JMenu("Game");
