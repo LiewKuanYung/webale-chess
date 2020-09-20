@@ -27,11 +27,12 @@ public class GameBoardView extends JPanel {
 		    	btn[btn.length - 1 - i ][j] = new GameBoardButton(j, btn.length - 1 - i ); //button( X Y )
 		        btn[btn.length - 1 - i ][j].setBackground(Color.WHITE);
 		        btn[btn.length - 1 - i ][j].setPreferredSize(new Dimension(50, 50));
-		        gameBoard.setBackground(Color.yellow);
+		        gameBoard.setBackground(Color.darkGray);
 		        gameBoard.add(btn[btn.length - 1 - i ][j]);
 		    }
         }
 		this.add(gameBoard);
+		this.setBackground(new Color(250, 240, 230));
 	}
 	
 	//Add listener to all game board buttons
@@ -43,22 +44,16 @@ public class GameBoardView extends JPanel {
 		}
 	}
 	
-	public void setButtonIcon(int startX, int startY, Piece endPiece) {
-		System.out.println("start setButtonIcon");
+	public void setValidMoveIcon(int startX, int startY, Piece endPiece) {
 		btn[startY][startX].setIcon(null);
-		System.out.println(endPiece.getPieceInfo());
-		System.out.println(endPiece.getCurrentX());
-		System.out.println(endPiece.getCurrentY());
 		try {
 			if (endPiece.getColor() == "R") {
-				System.out.println("endPiece is red");
 				BufferedImage originalIcon = ImageIO.read(getClass().getResource(endPiece.getPieceIcon()));
 				BufferedImage rotatedIcon = rotate(originalIcon, 180.0);
 				Image icon = rotatedIcon.getScaledInstance(50,50,Image.SCALE_SMOOTH);
 				btn[endPiece.getCurrentY()][endPiece.getCurrentX()].setIcon(new ImageIcon(icon));
 				System.out.println("endPiece is red (updated)");
 			} else if (endPiece.getColor() == "B") {
-				System.out.println("endPiece is blue");
 				BufferedImage originalIcon = ImageIO.read(getClass().getResource(endPiece.getPieceIcon()));
 				Image icon = originalIcon.getScaledInstance(50,50,Image.SCALE_SMOOTH);
 				btn[endPiece.getCurrentY()][endPiece.getCurrentX()].setIcon(new ImageIcon(icon));
@@ -71,8 +66,29 @@ public class GameBoardView extends JPanel {
 		}
 	}
 	
+	public void setOneRotateIcon(Piece rotatePiece) {
+		try {
+			if (rotatePiece.getColor() == "R") {
+				BufferedImage originalIcon = ImageIO.read(getClass().getResource(rotatePiece.getPieceIcon()));
+				BufferedImage rotatedIcon = rotate(originalIcon, 180.0);
+				Image icon = rotatedIcon.getScaledInstance(50,50,Image.SCALE_SMOOTH);
+				btn[rotatePiece.getCurrentY()][rotatePiece.getCurrentX()].setIcon(new ImageIcon(icon));
+				System.out.println("Piece is rotated to face north or up");
+			} else if (rotatePiece.getColor() == "B") {
+				BufferedImage originalIcon = ImageIO.read(getClass().getResource(rotatePiece.getPieceIcon()));
+				Image icon = originalIcon.getScaledInstance(50,50,Image.SCALE_SMOOTH);
+				btn[rotatePiece.getCurrentY()][rotatePiece.getCurrentX()].setIcon(new ImageIcon(icon));
+				System.out.println("Piece is rotated to face south or down");
+			} else {
+				throw new Exception("Pieces not found in setButtonIcon");
+			}
+		} catch (Exception e) {
+			System.out.println("Pieces Image not found: setButtonIcon");
+		}
+	}
+	
 	//Add icon to list of pieces
-	public void setPieceIcon(ArrayList<Piece> pieceList) {
+	public void setAllPiecesIcon(ArrayList<Piece> pieceList) {
 		try {
 			for(int i = 0; i<pieceList.size(); i++) {
 				BufferedImage originalIcon = ImageIO.read(getClass().getResource(pieceList.get(i).getPieceIcon()));
@@ -86,7 +102,7 @@ public class GameBoardView extends JPanel {
 	}
 	
 	//Add rotated icon to all list of pieces
-	public void setPieceRotatedIcon(ArrayList<Piece> pieceList) {
+	public void setAllPiecesRotatedIcon(ArrayList<Piece> pieceList) {
 		try {
 			for(int i = 0; i<pieceList.size(); i++) {
 				BufferedImage originalIcon = ImageIO.read(getClass().getResource(pieceList.get(i).getPieceIcon()));

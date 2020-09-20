@@ -16,8 +16,8 @@ public class GameBoardController{
 		this.boardModel = boardModel;
 		this.boardView = boardView;
 		this.gameWebale = gameWebale;
-		this.boardView.setPieceRotatedIcon(boardModel.getRedPieceList());
-		this.boardView.setPieceIcon(boardModel.getBluePieceList());
+		this.boardView.setAllPiecesRotatedIcon(boardModel.getRedPieceList());
+		this.boardView.setAllPiecesIcon(boardModel.getBluePieceList());
 		this.boardView.addBoardListener(new BoardListener(boardModel));
 		
 	}
@@ -72,23 +72,23 @@ public class GameBoardController{
 						moveStored[3]=r;
 						clickCount = 0;
 						
-						System.out.println("Check Point: Board controller: init player move");
+						System.out.println("Board controller: player move");
 						Piece movedPiece = boardModel.getSpot(moveStored[0],moveStored[1]).getPiece();
 						boolean isValidPlayerMove = gameWebale.playerMove(currentPlayer, moveStored[0],moveStored[1],moveStored[2],moveStored[3]);
-						System.out.println("Check Point: Board controller: finish player move");
+						System.out.println("Board controller: finish player move");
 						
 						//If player move is valid then reset board icon and switch player
 						if(isValidPlayerMove) {
 							moveCount++;
-							System.out.println("Check Point: Board controller change player");
+							System.out.println("Board controller: change player");
 							if (this.currentPlayer == players[0]) { 
-								boardView.setButtonIcon(moveStored[0], moveStored[1], movedPiece);
+								boardView.setValidMoveIcon(moveStored[0], moveStored[1], movedPiece);
 								System.out.println("reset icon and change to player[1]");
 								this.currentPlayer = players[1]; 
 							} 
 							else { 
-								boardView.setButtonIcon(moveStored[0], moveStored[1], movedPiece);
-								System.out.println("reset icon and change to player[1]");
+								boardView.setValidMoveIcon(moveStored[0], moveStored[1], movedPiece);
+								System.out.println("reset icon and change to player[0]");
 								this.currentPlayer = players[0]; 
 							} 
 						}else {

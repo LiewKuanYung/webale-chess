@@ -36,6 +36,19 @@ public class GameBoard {
 	public ArrayList<Piece> getRedPieceList() {
 		return redPieceList;
 	}
+	
+	public void changePlusAndTriangle(Piece...pieces) {
+		for(int i = 0; i<pieces.length; i++) {
+			if(pieces[i] instanceof Plus) {
+				System.out.print(pieces[i].getPieceInfo() + pieces[i].getCurrentX() 
+						+ pieces[i].getCurrentY()+ "Is Instance Of Plus");
+			} else if (pieces[i] instanceof Triangle) {
+				System.out.print(pieces[i].getPieceInfo() + pieces[i].getCurrentX() 
+						+ pieces[i].getCurrentY()+ "Is Instance Of Triange");
+			}
+		}
+		
+	}
 
 
 	

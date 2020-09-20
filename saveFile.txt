@@ -3,11 +3,11 @@ Color: R for Red, B for Blue
 Piece Name + Color
 
 ***Null means there is no chess piece on that spot***
-PLSB TRIB CHVB SUNB CHVB TRIB PLSB 
-ARRB NULL ARRB NULL ARRB NULL ARRB 
-NULL NULL NULL NULL NULL NULL NULL 
-NULL NULL NULL NULL NULL NULL NULL 
-NULL NULL NULL NULL NULL NULL NULL 
-NULL NULL NULL NULL NULL NULL NULL 
-ARRR NULL ARRR NULL ARRR NULL ARRR 
-PLSR TRIR CHVR SUNR CHVR TRIR PLSR 
+PLSB TRIB CHVB null CHVB null PLSB 
+ARRB null ARRB SUNB null null ARRB 
+null null null TRIB null null null 
+null null null null ARRB null null 
+null null ARRR null TRIR null null 
+null null null null null null null 
+ARRR null null SUNR ARRR null ARRR 
+PLSR null CHVR null CHVR TRIR PLSR 

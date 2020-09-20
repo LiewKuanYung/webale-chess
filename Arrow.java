@@ -22,6 +22,18 @@ public class Arrow extends Piece
     	}
     }
     
+    public boolean getDirection() {
+    	return direction;
+    }
+    
+    public void checkChangeDirection() {
+    	if (direction && super.getCurrentY() == 7){
+    		direction = false;
+    	} else if (!direction && super.getCurrentY() == 0) {
+    		direction = true;
+    	}
+    }
+    
     public boolean isValidMove(GameBoard board, GameBoardSpot start, GameBoardSpot end)//the input from click mouse position
     {
     	if (end.getPiece() != null) {
@@ -35,11 +47,8 @@ public class Arrow extends Piece
     	int tempx = end.getX() - start.getX();
     	int tempy = end.getY() - start.getY();
     	
-    	if (direction && super.getCurrentY() == 7){
-    		direction = false;
-    	} else if (!direction && super.getCurrentY() == 0) {
-    		direction = true;
-    	}
+    	//Check need to change direction or not
+    	checkChangeDirection();
     	
     	if (direction)
     	{
