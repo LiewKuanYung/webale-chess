@@ -20,13 +20,13 @@ public class GameBoard {
 		} 
 		
 		/*****For Back-end Checking Purpose *****/
-		System.out.println("Result: X = " + boxes[x][y].getX() + " Y = " + boxes[x][y].getY());
-		if(!boxes[x][y].isEmpty()) { System.out.println(boxes[x][y].getPiece().getPieceInfo());}
-		else if (boxes[x][y].isEmpty()) {System.out.println("Empty");}
+		System.out.println("Result: X:" + boxes[y][x].getX() + " Y:" + boxes[y][x].getY());
+		if(!boxes[y][x].isEmpty()) { System.out.println(boxes[y][x].getPiece().getPieceInfo());}
+		else if (boxes[y][x].isEmpty()) {System.out.println("Empty");}
 		/*****For Back-end Checking Purpose *****/
 		
 		
-		return boxes[x][y]; 
+		return boxes[y][x]; 
 	} 
 	
 	public ArrayList<Piece> getBluePieceList() {
@@ -42,11 +42,11 @@ public class GameBoard {
 	public void resetBoard ()
 	{	
 		//Fill up all boxes with null first
-		for(int i = 0; i < 8; i++)
+		for(int i = 0; i < 8; i++) //Y axis
 	    {
-	        for(int j = 0; j < 7; j++)
+	        for(int j = 0; j < 7; j++) //X axis
 	        {
-	            boxes[i][j] = new GameBoardSpot (i , j ,null);
+	            boxes[i][j] = new GameBoardSpot (j , i ,null);
 	        } 
 		} 
 		int a = 0;

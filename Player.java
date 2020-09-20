@@ -23,7 +23,7 @@ public class Player
     	return (color == "R");
     }
     
-    public String getColorRed() {
+    public String getColor() {
     	return color;
     }
 }

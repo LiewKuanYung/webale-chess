@@ -21,13 +21,11 @@ public class GameBoardView extends JPanel {
 	//Initialize game board buttons
 	void initComponent() {
 		
-		gameBoard.setPreferredSize(new Dimension(500,500));
+		gameBoard.setPreferredSize(new Dimension(550,550));
 		
-		System.out.println(btn.length + " " + btn[0].length);
-		
-		for (int i=0; i < btn.length; i++) { //Row
-		    for (int j=0; j < btn[i].length; j++) { //Column
-		    	btn[i][j] = new GameBoardButton(i, j);
+		for (int i=0; i < btn.length; i++) { //Row //Y axis
+		    for (int j=0; j < btn[i].length; j++) { //Column //X axis
+		    	btn[i][j] = new GameBoardButton(j, i);
 		        btn[i][j].setBackground(Color.WHITE);
 		        btn[i][j].setPreferredSize(new Dimension(50, 50));
 		        gameBoard.setBackground(Color.yellow);

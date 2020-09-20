@@ -1,17 +1,24 @@
 import java.awt.event.*;
+import java.util.*;
 
 public class GameBoardController{
 	
-	private GameBoard boardModel;
-	private GameBoardView boardView;
+	public GameBoard boardModel;
+	public GameBoardView boardView;
+	public GameWebale gameWebale;
+	
+	public int[] moveStored = new int[4];
+	public int clickCount = 0;
 	
 	
-	public GameBoardController(GameBoard boardModel, GameBoardView boardView) {
+	public GameBoardController(GameBoardView boardView, GameBoard boardModel, GameWebale gameWebale) {
 		this.boardModel = boardModel;
 		this.boardView = boardView;
+		this.gameWebale = gameWebale;
 		this.boardView.setPieceRotatedIcon(boardModel.getRedPieceList());
 		this.boardView.setPieceIcon(boardModel.getBluePieceList());
-		this.boardView.addBoardListener(new BoardListener(boardModel));
+		this.boardView.addBoardListener(new BoardListener(boardModel, gameWebale));
+		
 	}
 	
 	public GameBoardView getBoardView() {
@@ -22,11 +29,25 @@ public class GameBoardController{
 		return boardModel;
 	}
 	
-	class BoardListener implements ActionListener {
+	public class BoardListener implements ActionListener {
 		
+		GameWebale gameWebale;
 		GameBoard boardModel;
-		BoardListener(GameBoard boardModel){
+		public Player currentPlayer;
+		public Player[] players = new Player[2];
+		
+		BoardListener(GameBoard boardModel, GameWebale gameWebale){
 			this.boardModel = boardModel;
+			this.gameWebale = gameWebale;
+			
+			try {
+				players[0] = new Player(true, "R");
+				players[1] = new Player(false, "B");
+				currentPlayer = players[0];
+				
+			} catch (Exception e1) {
+				System.out.println("Exception: GameBoardController");
+			}
 		}
 		
 		@Override
@@ -42,17 +63,44 @@ public class GameBoardController{
 				System.out.println("Clicked X:"+ c + " Y:" + r);
 				
 				try {
+					if(clickCount == 0) {
+						moveStored[0]=c;
+						moveStored[1]=r;
+						clickCount++;
+						System.out.println("Click Counter: "+clickCount);
+					}
+					else if(clickCount == 1) {
+						moveStored[2]=c;
+						moveStored[3]=r;
+						clickCount = 0;
+						
+						System.out.println("Check Point: Board controller: init player move");
+						boolean test = gameWebale.playerMove(currentPlayer, moveStored[0],moveStored[1],moveStored[2],moveStored[3]);
+						System.out.println("Check Point: Board controller: finish player move");
+						
+						Arrays.fill(moveStored, -1);				
+						System.out.println("Click Counter: "+clickCount);
+						
+						if(test) {
+							System.out.println("Check Point: Board controller change player");
+							if (this.currentPlayer == players[0]) { 
+								boardView.setPieceRotatedIcon(boardModel.getRedPieceList());
+								System.out.println("reset icon and change to player[1]");
+								this.currentPlayer = players[1]; 
+							} 
+							else { 
+								boardView.setPieceIcon(boardModel.getBluePieceList());
+								System.out.println("reset icon and change to player[1]");
+								this.currentPlayer = players[0]; 
+							} 
+						}else {
+							System.out.println("??? Not Successful ???\n\n");
+						}
+					}
 					
-					boardModel.getSpot(c, r);
-					/*
-					if(boardModel.getSpot(r, c).isEmpty()) {
-						System.out.print("Nothing here");
-					} else {
-						System.out.print(boardModel.getSpot(r, c).getPiece().getPieceName());
-					}/**/
+					
 				} catch (Exception e1) {
-					System.out.println("GameBoardController: actionPerformed exception");
-					//e1.printStackTrace();
+					System.out.println("Exception: GameBoardController actionPerformed\n\n");
 				}
 				
 				

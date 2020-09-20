@@ -17,6 +17,7 @@ public class Plus extends Piece
     @Override
     public boolean isValidMove(GameBoard board, GameBoardSpot start, GameBoardSpot end)
     {
+    	System.out.println("Plus Check Point 1");
     	//Check if "end" has same color with "current"
     	if (super.getColor() == end.getPiece().getColor())
     	{
@@ -24,6 +25,7 @@ public class Plus extends Piece
         }
         else //else check for obstacle
         {
+        	System.out.println("Plus Check Point 2");
 			int tempx = end.getX() - start.getX();
 			int tempy = end.getY() - start.getY();
 			

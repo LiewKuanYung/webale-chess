@@ -26,6 +26,11 @@ public abstract class Piece
 		return currentY;
 	}
 	
+	public void setCurrentXY(int newX, int newY) {
+		this.currentX = newX;
+		this.currentY = newY;
+	}
+	
 	public String getPieceName() 
 	{ 
 		return pieceName;

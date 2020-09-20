@@ -21,7 +21,16 @@ public class Main {
 		
 		GameBoardView boardView = new GameBoardView();
 		GameBoard boardModel = new GameBoard();
-		GameBoardController boardController = new GameBoardController(boardModel, boardView);
+		Player player1 = null;
+		Player player2 = null;
+		try {
+			player1 = new Player(true, "R");
+			player2 = new Player(false, "B");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		GameWebale gameWebale = new GameWebale(boardModel, player1, player2);
+		GameBoardController boardController = new GameBoardController(boardView, boardModel, gameWebale);
 		
 		MainMenu mainMenu = new MainMenu();
 		MainMenuController controller = new MainMenuController(mainMenu, boardController);

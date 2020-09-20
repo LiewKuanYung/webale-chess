@@ -4,7 +4,7 @@ public class GameMove {
 	private GameBoardSpot start; 
 	private GameBoardSpot end; 
 	private Piece pieceMoved; 
-	private Piece pieceKilled;  
+	private Piece pieceCaptured;  
 
 	public GameMove(Player player, GameBoardSpot start, GameBoardSpot end) 
 	{ 
@@ -28,5 +28,13 @@ public class GameMove {
 	
 	public Piece getPieceMoved() {
 		return pieceMoved;
+	}
+	
+	public void setPieceKilled(Piece piece) {
+		this.pieceCaptured = piece;
+	}
+	
+	public Piece getPieceCaptured() {
+		return pieceCaptured;
 	}
 }
