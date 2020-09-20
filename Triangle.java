@@ -67,7 +67,7 @@ public class Triangle extends Piece
     				try {
     					for (int i = -1; i > tempx ; i--)
     					{
-    						if (!board.getSpot(start.getX()-i,start.getY()-i).isEmpty())
+    						if (!board.getSpot(start.getX()+i,start.getY()+i).isEmpty())
     						{
     							i = 0;//stop the loop when it detects the first obstacle
     							return false;
