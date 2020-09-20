@@ -51,8 +51,9 @@ public class GameMenuController {
 		    	  writer.write("Piece name: SUN = SUN, CHEVRON = CHV, TRIANGLE = TRI, PLUS = PLS, ARROW = ARR\n"+ 
 		    	  "Color: R for Red, B for Blue\n" + "Piece Name + Color\n\n" + "***Null means there is no chess piece on that spot***\n" );
 		    	  
-		    	  for(int x = 0; x < 8; x++){
-		    		  for(int y = 0; y < 7; y++){
+		    	  
+		    		  for(int y = 0; y < 8; y++){
+		    			  for(int x = 0; x < 7; x++){
 			              if(gbm.getSpot(x,y).isEmpty()){
 			                  writer.write("NULL ");
 			              }
