@@ -12,13 +12,13 @@ public class Arrow extends Piece
     		super.setPieceIcon("images/Blue_Arrow.png");
     	}
     	
-    	if (color == "R")//top part
+    	if (color == "R")//top piece
     	{
-    	    this.direction = false; // facing to South
+    	    this.direction = false; // facing to South (down)
     	}
-    	else if (color == "B")//bottom part
+    	else if (color == "B")//bottom piece
     	{
-    	    this.direction = true; //facing to North
+    	    this.direction = true; //facing to North (up)
     	}
     }
     

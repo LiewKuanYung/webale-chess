@@ -44,10 +44,13 @@ public class GameBoardView extends JPanel {
 		}
 	}
 	
+	//Set icon for valid move piece 
 	public void setValidMoveIcon(int startX, int startY, Piece endPiece) {
 		btn[startY][startX].setIcon(null);
 		try {
-			if (endPiece.getColor() == "R") {
+			if(endPiece instanceof Arrow) {
+				rotateOneIcon((Arrow)endPiece);
+			}else if (endPiece.getColor() == "R") {
 				BufferedImage originalIcon = ImageIO.read(getClass().getResource(endPiece.getPieceIcon()));
 				BufferedImage rotatedIcon = rotate(originalIcon, 180.0);
 				Image icon = rotatedIcon.getScaledInstance(50,50,Image.SCALE_SMOOTH);
@@ -66,24 +69,27 @@ public class GameBoardView extends JPanel {
 		}
 	}
 	
-	public void setOneRotateIcon(Piece rotatePiece) {
+	public void rotateOneIcon(Arrow rotatePiece) {
 		try {
-			if (rotatePiece.getColor() == "R") {
+			if (rotatePiece.getDirection()) { //Use original icon (face up) if piece reaches the bottom
+				BufferedImage originalIcon = ImageIO.read(getClass().getResource(rotatePiece.getPieceIcon()));
+				Image icon = originalIcon.getScaledInstance(50,50,Image.SCALE_SMOOTH);
+				btn[rotatePiece.getCurrentY()][rotatePiece.getCurrentX()].setIcon(new ImageIcon(icon));
+			} else if (!rotatePiece.getDirection()) { //Use rotated icon (face down) if piece reaches the top
 				BufferedImage originalIcon = ImageIO.read(getClass().getResource(rotatePiece.getPieceIcon()));
 				BufferedImage rotatedIcon = rotate(originalIcon, 180.0);
 				Image icon = rotatedIcon.getScaledInstance(50,50,Image.SCALE_SMOOTH);
 				btn[rotatePiece.getCurrentY()][rotatePiece.getCurrentX()].setIcon(new ImageIcon(icon));
-				System.out.println("Piece is rotated to face north or up");
-			} else if (rotatePiece.getColor() == "B") {
-				BufferedImage originalIcon = ImageIO.read(getClass().getResource(rotatePiece.getPieceIcon()));
-				Image icon = originalIcon.getScaledInstance(50,50,Image.SCALE_SMOOTH);
-				btn[rotatePiece.getCurrentY()][rotatePiece.getCurrentX()].setIcon(new ImageIcon(icon));
-				System.out.println("Piece is rotated to face south or down");
+				
 			} else {
-				throw new Exception("Pieces not found in setButtonIcon");
+				throw new Exception("Exception: rotateOneIcon");
 			}
+			
+			Icon originalIcon = btn[rotatePiece.getCurrentY()][rotatePiece.getCurrentX()].getIcon();
+			
+			System.out.println("rotated one icon");
 		} catch (Exception e) {
-			System.out.println("Pieces Image not found: setButtonIcon");
+			System.out.println("Exception: Pieces Image not found in rotateOneIcon");
 		}
 	}
 	

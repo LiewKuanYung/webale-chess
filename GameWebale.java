@@ -60,12 +60,7 @@ public class GameWebale {
 		} 
 		System.out.println("Check Point 4 pass startPiece test");
 	
-		/* check valid player? 
-		if (player != currentTurn) { 
-			System.out.println("invalide current player");
-			return false; 
-		} /**/
-		
+		// check valid player? 
 		if (startPiece.getColor() != player.getColor()) { 
 			System.out.println("invalid current player (color)");
 			return false; 
