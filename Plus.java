@@ -45,7 +45,7 @@ public class Plus extends Piece
     		try {
     			for (int i = 1; i < tempy ; i++)
     			{
-    				if (!board.getSpot(end.getX(), i).isEmpty())
+    				if (!board.getSpot(start.getX(), start.getY()+i).isEmpty())
     				{
     					i = 0;//stop the loop when it detects the first obstacle
     					return false;
@@ -65,7 +65,7 @@ public class Plus extends Piece
     		try {
     			for (int i = -1; i > tempy ; i--)
     			{
-    				if (!board.getSpot(end.getX(), i).isEmpty())
+    				if (!board.getSpot(start.getX(), start.getY()+i).isEmpty())
     				{
     					i = 0;//stop the loop when it detects the first obstacle
     					return false;
@@ -85,7 +85,7 @@ public class Plus extends Piece
     		try {
     			for (int i = 1; i < tempx ; i++)
     			{
-    				if (!board.getSpot(i, end.getY()).isEmpty())
+    				if (!board.getSpot(start.getX()+i, start.getY()).isEmpty())
     				{
     					i = 0;//stop the loop when it detects the first obstacle
     					return false;
@@ -106,7 +106,7 @@ public class Plus extends Piece
     		try {
     			for (int i = -1; i > tempx ; i--)
     			{
-    				if (!board.getSpot(i, end.getY()).isEmpty())
+    				if (!board.getSpot(start.getX()+i, start.getY()).isEmpty())
     				{
     					i = 0;//stop the loop when it detects the first obstacle
     					return false;
