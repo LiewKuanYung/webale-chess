@@ -27,12 +27,12 @@ public class Sun extends Piece
     	}
     	
     	System.out.println("Plus Check Point 2");
-    	int tempx = java.lang.Math.abs(end.getX() - start.getX());
-    	int tempy = java.lang.Math.abs(end.getY() - start.getY());
+    	int tempx = end.getX() - start.getX();
+    	int tempy = end.getY() - start.getY();
 
-    	if (tempx <= 1 && tempy <= 1)
+    	if (java.lang.Math.abs(tempx) <= 1 && java.lang.Math.abs(tempy) <= 1)
     	{
-    		super.setCurrentXY(tempy, tempx);
+    		super.setCurrentXY((super.getCurrentX()+tempx), (super.getCurrentY()+tempy));
     		return true;
     	}
     	else //if it is not the movement rule of Sun

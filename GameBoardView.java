@@ -44,8 +44,36 @@ public class GameBoardView extends JPanel {
 		}
 	}
 	
+	public void setButtonIcon(int startX, int startY, Piece endPiece) {
+		System.out.println("start setButtonIcon");
+		btn[startY][startX].setIcon(null);
+		System.out.println(endPiece.getColor());
+		System.out.println(endPiece.getCurrentX());
+		System.out.println(endPiece.getCurrentY());
+		try {
+			if (endPiece.getColor() == "R") {
+				System.out.println("endPiece is red");
+				BufferedImage originalIcon = ImageIO.read(getClass().getResource(endPiece.getPieceIcon()));
+				BufferedImage rotatedIcon = rotate(originalIcon, 180.0);
+				Image icon = rotatedIcon.getScaledInstance(50,50,Image.SCALE_SMOOTH);
+				btn[endPiece.getCurrentY()][endPiece.getCurrentX()].setIcon(new ImageIcon(icon));
+				System.out.println("endPiece is red (updated)");
+			} else if (endPiece.getColor() == "B") {
+				System.out.println("endPiece is blue");
+				BufferedImage originalIcon = ImageIO.read(getClass().getResource(endPiece.getPieceIcon()));
+				Image icon = originalIcon.getScaledInstance(50,50,Image.SCALE_SMOOTH);
+				btn[endPiece.getCurrentY()][endPiece.getCurrentX()].setIcon(new ImageIcon(icon));
+				System.out.println("endPiece is blue (updated)");
+			} else {
+				throw new Exception("Pieces not found in setButtonIcon");
+			}
+		} catch (Exception e) {
+			System.out.println("Pieces Image not found: setButtonIcon");
+		}
+	}
+	
 	//Add icon to list of pieces
-	void setPieceIcon(ArrayList<Piece> pieceList) {
+	public void setPieceIcon(ArrayList<Piece> pieceList) {
 		try {
 			for(int i = 0; i<pieceList.size(); i++) {
 				BufferedImage originalIcon = ImageIO.read(getClass().getResource(pieceList.get(i).getPieceIcon()));
@@ -54,12 +82,12 @@ public class GameBoardView extends JPanel {
 			}
 	    }
 	    catch (Exception ex) {
-	    	System.out.println("Image not found");
+	    	System.out.println("Pieces Image not found: setPieceIcon");
 	    }
 	}
 	
 	//Add rotated icon to all list of pieces
-	void setPieceRotatedIcon(ArrayList<Piece> pieceList) {
+	public void setPieceRotatedIcon(ArrayList<Piece> pieceList) {
 		try {
 			for(int i = 0; i<pieceList.size(); i++) {
 				BufferedImage originalIcon = ImageIO.read(getClass().getResource(pieceList.get(i).getPieceIcon()));
@@ -69,7 +97,7 @@ public class GameBoardView extends JPanel {
 			}
 	    }
 	    catch (Exception ex) {
-	    	System.out.println("Image not found");
+	    	System.out.println("Pieces Image not found: setPieceRotatedIcon");
 	    }
 	}
 	

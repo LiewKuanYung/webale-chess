@@ -75,27 +75,28 @@ public class GameBoardController{
 						clickCount = 0;
 						
 						System.out.println("Check Point: Board controller: init player move");
+						Piece endPiece = boardModel.getSpot(moveStored[0],moveStored[1]).getPiece();
 						boolean test = gameWebale.playerMove(currentPlayer, moveStored[0],moveStored[1],moveStored[2],moveStored[3]);
 						System.out.println("Check Point: Board controller: finish player move");
-						
-						Arrays.fill(moveStored, -1);				
-						System.out.println("Click Counter: "+clickCount);
 						
 						if(test) {
 							System.out.println("Check Point: Board controller change player");
 							if (this.currentPlayer == players[0]) { 
-								boardView.setPieceRotatedIcon(boardModel.getRedPieceList());
+								boardView.setButtonIcon(moveStored[0], moveStored[1], endPiece);
 								System.out.println("reset icon and change to player[1]");
 								this.currentPlayer = players[1]; 
 							} 
 							else { 
-								boardView.setPieceIcon(boardModel.getBluePieceList());
+								boardView.setButtonIcon(moveStored[0], moveStored[1], endPiece);
 								System.out.println("reset icon and change to player[1]");
 								this.currentPlayer = players[0]; 
 							} 
 						}else {
-							System.out.println("??? Not Successful ???\n\n");
+							System.out.println("??? Not Successful ???");
 						}
+						
+						Arrays.fill(moveStored, -1);				
+						System.out.println("Click Counter: "+clickCount +"\n\n");
 					}
 					
 					
