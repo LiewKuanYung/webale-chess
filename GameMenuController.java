@@ -49,12 +49,12 @@ public class GameMenuController {
 		    	try {
 		    	  FileWriter writer = new FileWriter("saveFile.txt");
 		    	  writer.write("Piece name: SUN = SUN, CHEVRON = CHV, TRIANGLE = TRI, PLUS = PLS, ARROW = ARR\n"+ 
-		    	  "Color: R for Red, B for Blue\n" + "Piece Name + Color\n\n");
+		    	  "Color: R for Red, B for Blue\n" + "Piece Name + Color\n\n" + "***Null means there is no chess piece on that spot***\n" );
 		    	  
 		    	  for(int x = 0; x < 8; x++){
 		    		  for(int y = 0; y < 7; y++){
 			              if(gbm.getSpot(x,y).isEmpty()){
-			                  writer.write("null ");
+			                  writer.write("NULL ");
 			              }
 			              else{
 			            	  writer.write(gbm.getSpot(x,y).getPiece().getPieceName()
@@ -66,7 +66,7 @@ public class GameMenuController {
 		          }		    	
 		            writer.close();
 		    	}
-		    	catch (Exception ex2) {
+		    	catch (Exception ex) {
 		    	    System.out.println("ERROR");
 		    	}
 		   }
