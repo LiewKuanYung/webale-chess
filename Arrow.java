@@ -1,3 +1,4 @@
+//by Eugene
 public class Arrow extends Piece
 {
     private boolean direction;

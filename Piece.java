@@ -1,3 +1,4 @@
+// by Eugene
 public abstract class Piece
 {
 	private int currentX;

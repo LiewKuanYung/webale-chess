@@ -5,7 +5,7 @@ import javax.swing.event.*;
 import java.awt.Image;
 import javax.imageio.ImageIO;
 import java.util.ArrayList;
-
+//by Yap Mou En
 //A view class for main menu
 public class MainMenu extends JFrame{
 	

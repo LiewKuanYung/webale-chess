@@ -1,3 +1,4 @@
+// By Eugene
 public class Triangle extends Piece
 {
     Triangle(int x, int y, String color)

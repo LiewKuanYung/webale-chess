@@ -1,4 +1,4 @@
-
+// By Liew Kuan Yung
 public class GameMove { 
 	private Player player; 
 	private GameBoardSpot start; 

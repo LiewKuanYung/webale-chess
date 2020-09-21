@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-
+//by Liew Kuan Yung
 public class GameBoard { 
 	
 	//store its own instance for singleton

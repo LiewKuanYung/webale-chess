@@ -1,4 +1,3 @@
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
@@ -7,7 +6,7 @@ import java.awt.event.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-
+//by Liew Kuan Yung
 public class GameBoardView extends JPanel {
 	
 	private GameBoardButton[][] btn = new GameBoardButton[8][7];

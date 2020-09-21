@@ -1,5 +1,5 @@
 import javax.swing.JButton;
-
+//by Liew Kuan Yung
 class GameBoardButton extends JButton {
 	
 	private int x; //Column // Horizontal

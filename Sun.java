@@ -1,3 +1,4 @@
+// By Eugene
 public class Sun extends Piece
 {
 	//public constructor to initialize the position and color
