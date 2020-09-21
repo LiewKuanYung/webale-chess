@@ -11,7 +11,10 @@ public class Sun extends Piece
     	} else {
     		super.setPieceIcon("images/Blue_Sun.png");
     	}
+    	
+    	movementType = new MovementOneBox();
     }
+    
     
     //check if the clicked mouse position is an ally or not, if ally then return false else proceed to do checking for obstacles
     public boolean isValidMove(GameBoard board, GameBoardSpot start, GameBoardSpot end)
@@ -26,17 +29,6 @@ public class Sun extends Piece
 	        }
     	}
     	
-    	int tempx = end.getX() - start.getX();
-    	int tempy = end.getY() - start.getY();
-
-    	if (java.lang.Math.abs(tempx) <= 1 && java.lang.Math.abs(tempy) <= 1)
-    	{
-    		return true;
-    	}
-    	else //if it is not the movement rule of Sun
-    	{
-    		return false;
-    		//pop up display "Illegal movement"
-    	}
+    	return movementType.checkValidMove(board, start, end, false);
     }
 }

@@ -10,17 +10,15 @@ public class MainMenuController {
 	
 	 public MainMenu mainMenu;
 	 public GameBoardController boardControl;
-	 public GameBoard gameBoard;
 	 
 	 //MainMenuController constructor
-	 public MainMenuController(MainMenu mainMenu, GameBoardController boardControl, GameBoard gameBoard) {
+	 public MainMenuController(MainMenu mainMenu, GameBoardController boardControl) {
 		 
 		this.mainMenu = mainMenu;
 		this.boardControl = boardControl;
-		this.gameBoard = gameBoard;
 		
 		//Add listener to view 
-		mainMenu.btnStart.addActionListener(new StartActionListener(mainMenu, boardControl,gameBoard));	
+		mainMenu.btnStart.addActionListener(new StartActionListener(mainMenu, boardControl));	
 		mainMenu.btnInstruction.addActionListener(new InstructionActionListener());
 		mainMenu.btnLoadGame.addActionListener(new LoadActionListener());
 		mainMenu.btnExitGame.addActionListener(new TerminateActionListener());
@@ -32,28 +30,26 @@ public class MainMenuController {
 		 MainMenu mainMenu;
 		 GameMenu gameMenu;
 		 GameMenuController controller;
-		 GameBoardController boardControl;
-		 GameBoard gameBoard;
+		 GameBoardController boardController;
 		 
-		 StartActionListener(MainMenu mainMenu, GameBoardController boardControl, GameBoard gameBoard){
+		 StartActionListener(MainMenu mainMenu, GameBoardController boardControl){
 			 this.mainMenu = mainMenu;
-			 this.boardControl = boardControl;
+			 this.boardController = boardControl;
 		 }
 		public void actionPerformed(ActionEvent e) {
 	
 			gameMenu = new GameMenu();
-			controller = new GameMenuController(gameMenu,boardControl);
+			controller = new GameMenuController(gameMenu,boardController);
 			mainMenu.getContentPane().removeAll();
 			mainMenu.getContentPane().repaint();
 			mainMenu.getContentPane().revalidate();
 			mainMenu.setJMenuBar(gameMenu);
-			mainMenu.add(boardControl.getBoardView());
+			mainMenu.add(boardController.getBoardView());
 		}
 	}
 	
 	//Provide action listener to load game button
 	class LoadActionListener implements ActionListener{
-		GameBoard gbm = new GameBoard();
 		public void actionPerformed(ActionEvent e) {
 			try {
 			File file = new File("saveFile.txt");

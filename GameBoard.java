@@ -2,14 +2,38 @@ import java.util.ArrayList;
 
 public class GameBoard { 
 	
-	GameBoardSpot[][] boxes = new GameBoardSpot[8][7]; 
-	ArrayList<Piece> redPieceList = new ArrayList<>(); 
-	ArrayList<Piece> bluePieceList = new ArrayList<>(); 
+	//store its own instance for singleton
+	public static GameBoard firstInstance = null; 
+	
+	//board elements
+	private GameBoardSpot[][] boxes = new GameBoardSpot[8][7]; 
+	private ArrayList<Piece> redPieceList = new ArrayList<>(); 
+	private ArrayList<Piece> bluePieceList = new ArrayList<>(); 
 
-	public GameBoard() 
+	//private constructor not allow other program to instantiate this class
+	private GameBoard() 
 	{ 
 		this.resetBoard(); 
 	} 
+	
+	public static GameBoard getInstance() { //Singleton: get instance being created
+		if(firstInstance == null) {
+			
+			// Use synchronized when the first object is created
+			synchronized(GameBoard.class){ 
+
+				if(firstInstance == null) {
+					
+					// If the instance isn't needed it isn't created
+					// This is known as lazy instantiation
+					firstInstance = new GameBoard();
+
+				}
+			}
+		}	
+		
+		return firstInstance;
+	}
 
 	//get information on particular spot
 	public GameBoardSpot getSpot(int x, int y) throws Exception 
@@ -50,8 +74,6 @@ public class GameBoard {
 		}
 		
 	}
-
-
 	
 	public void resetBoard ()
 	{	

@@ -24,7 +24,7 @@ public class Main {
 		}
 			
 		GameBoardView boardView = new GameBoardView();
-		GameBoard boardModel = new GameBoard();
+		GameBoard boardModel = GameBoard.getInstance();
 		Player player1 = null;
 		Player player2 = null;
 		
@@ -39,6 +39,6 @@ public class Main {
 		GameWebale gameWebale = new GameWebale(boardModel, player1, player2);
 		GameBoardController boardController = new GameBoardController(boardView, boardModel, gameWebale);	
 		MainMenu mainMenu = new MainMenu();
-		MainMenuController controller = new MainMenuController(mainMenu, boardController, boardModel);	
+		MainMenuController controller = new MainMenuController(mainMenu, boardController);	
 	}
 }

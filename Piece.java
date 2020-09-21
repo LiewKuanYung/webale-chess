@@ -6,8 +6,7 @@ public abstract class Piece
     private String pieceIcon;
     private String color; 
     private boolean captured = false; 
-    
-    //private MovementBehavior movement;
+    protected MovementBehavior movementType;
 
 	public Piece(int currentX, int currentY, String color) 
 	{ 
@@ -76,6 +75,11 @@ public abstract class Piece
     	setCurrentXY((getCurrentX()+tempx), (getCurrentY()+tempy));
     }
     
+	//For dynamic changes
+	public void setMovementBehavior(MovementBehavior type) {
+		this.movementType = type;
+	}
+	
     //Validate move
     public abstract boolean isValidMove(GameBoard board, GameBoardSpot start, GameBoardSpot end);   
     
