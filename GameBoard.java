@@ -13,7 +13,7 @@ public class GameBoard {
 	//private constructor not allow other program to instantiate this class
 	private GameBoard() 
 	{ 
-		this.resetBoard(); 
+		//this.resetBoard(); 
 	} 
 	
 	public static GameBoard getInstance() { //Singleton: get instance being created
@@ -44,7 +44,7 @@ public class GameBoard {
 		} 
 		
 		/*****For Back-end Checking Purpose *****/
-		System.out.print("Result: X:" + boxes[y][x].getX() + " Y:" + boxes[y][x].getY());
+		System.out.print("Result: X:" + boxes[y][x].getX() + " Y:" + boxes[y][x].getY()+"  ");
 		if(!boxes[y][x].isEmpty()) { System.out.println(boxes[y][x].getPiece().getPieceInfo());}
 		else if (boxes[y][x].isEmpty()) {System.out.println("Empty");}
 		/*****For Back-end Checking Purpose *****/
@@ -143,4 +143,94 @@ public class GameBoard {
         	boxes[b+1][i*2].setPiece(bluePieceList.get(7+i));
         }
 	}
+	
+	
+	public void loadBoard (ArrayList<String> loadPiecesList)
+	{	
+		redPieceList.clear();
+		bluePieceList.clear();
+		
+		//Fill up all boxes with null first
+		for(int i = 0; i < 8; i++) //Y axis
+		{
+			for(int j = 0; j < 7; j++) //X axis
+			{
+				boxes[i][j] = new GameBoardSpot (j , i ,null);
+			} 
+		} 
+		
+		int redCount = 0;
+		int blueCount = 0;
+		System.out.println(loadPiecesList.size());
+		for(int i = 0; i < loadPiecesList.size(); i++) {
+
+			System.out.println(loadPiecesList.get(i));
+			char info[] = new char[4];
+			info[0] = loadPiecesList.get(i).charAt(0);
+			info[1] = loadPiecesList.get(i).charAt(1);
+			info[2] = loadPiecesList.get(i).charAt(2);
+			info[3] = loadPiecesList.get(i).charAt(3);
+			String pieceName = String.valueOf(info);
+			String pieceColor = Character.toString(info[3]);
+			int x = Character.getNumericValue(loadPiecesList.get(i).charAt(4));
+			int y = Character.getNumericValue(loadPiecesList.get(i).charAt(5));
+			System.out.println("loadBoard " + pieceName +" " + x + y);
+			switch(pieceName) 
+			{
+			case "SUNR" :
+				redPieceList.add(new Sun(x, y, pieceColor));
+				boxes[y][x].setPiece(redPieceList.get(redCount));
+				redCount++;
+				System.out.println("***** ***** Check SUN ***** *****");
+				break;
+			case "PLSR" :
+				redPieceList.add(new Plus(x, y, pieceColor));
+				boxes[y][x].setPiece(redPieceList.get(redCount));
+				redCount++;
+				break;
+			case "TRIR" :
+				redPieceList.add(new Triangle(x, y, pieceColor));
+				boxes[y][x].setPiece(redPieceList.get(redCount));
+				redCount++;
+				break;
+			case "CHVR" :
+				redPieceList.add(new Chevron(x, y, pieceColor));
+				boxes[y][x].setPiece(redPieceList.get(redCount));
+				redCount++;
+				break;
+			case "ARRR" :
+				redPieceList.add(new Arrow(x, y, pieceColor));
+				boxes[y][x].setPiece(redPieceList.get(redCount));
+				redCount++;
+				break;
+			case "SUNB" :
+				bluePieceList.add(new Sun(x, y, pieceColor));
+				boxes[y][x].setPiece(bluePieceList.get(blueCount));
+				blueCount++;
+				System.out.println("***** ***** Check SUN B ***** *****");
+				break;
+			case "PLSB" :
+				bluePieceList.add(new Plus(x, y, pieceColor));
+				boxes[y][x].setPiece(bluePieceList.get(blueCount));
+				blueCount++;
+				break;
+			case "TRIB" :
+				bluePieceList.add(new Triangle(x, y, pieceColor));
+				boxes[y][x].setPiece(bluePieceList.get(blueCount));
+				blueCount++;
+				break;
+			case "CHVB" :
+				bluePieceList.add(new Chevron(x, y, pieceColor));
+				boxes[y][x].setPiece(bluePieceList.get(blueCount));
+				blueCount++;
+				break;
+			case "ARRB" :
+				bluePieceList.add(new Arrow(x, y, pieceColor));
+				boxes[y][x].setPiece(bluePieceList.get(blueCount));
+				blueCount++;
+				break;
+			}	
+		}	
+	}
+
 } 

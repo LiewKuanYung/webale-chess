@@ -66,7 +66,7 @@ public abstract class Piece
 	} 
 	
 	public String getPieceInfo() {
-		return (String.valueOf(currentX) + String.valueOf(currentY) + pieceName + color);
+		return (pieceName + color + String.valueOf(currentX) + String.valueOf(currentY) );
 	}
 	
 	public void move(int startX, int startY, int endX, int endY) {

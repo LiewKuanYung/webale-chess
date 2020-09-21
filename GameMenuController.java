@@ -67,7 +67,7 @@ public class GameMenuController {
 				 for(int y = 0; y < 8; y++){
 					 for(int x = 0; x < 7; x++){
 						 if(boardController.getBoardModel().getSpot(x,y).isEmpty()){
-							 writer.write(String.valueOf(x)+String.valueOf(y)+"___ ");
+							 writer.write("null   ");
 						 }
 						 else{
 							 writer.write(boardController.getBoardModel().getSpot(x,y).getPiece().getPieceInfo() + " ");		             
