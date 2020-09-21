@@ -38,8 +38,9 @@ public class Arrow extends Piece
     
     public boolean isValidMove(GameBoard board, GameBoardSpot start, GameBoardSpot end)//the input from click mouse position
     {
+    	//check if the clicked mouse position is an ally or not, if ally then return false else proceed to do checking for obstacles
     	if (end.getPiece() != null) {
-	        if (super.getColor() == end.getPiece().getColor())//check if the clicked mouse position is an ally or not, if ally then return false else proceed to do checking for obstacles
+	        if (super.getColor() == end.getPiece().getColor())
 	        {
 	            return false;//if the end spot is ally then return false
 	        }
@@ -48,6 +49,7 @@ public class Arrow extends Piece
     	//Check need to change direction or not
     	checkChangeDirection();
     	
+    	//Check obstacle
     	return movementType.checkValidMove(board, start, end, direction);
     }
 }

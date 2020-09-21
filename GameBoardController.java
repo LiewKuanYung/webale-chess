@@ -72,7 +72,7 @@ public class GameBoardController{
 						String tempColor = boardModel.getSpot(c, r).getPiece().getColor();
 						boardView.showButtonColor(moveStored[0],moveStored[1],tempColor);
 						if(!boardModel.getSpot(c, r).isEmpty()) {
-							showAllValidMove(c, r, true,tempColor);
+							showAllValidMove(c, r, true, tempColor);
 						}
 					}
 					else if(clickCount == 1) {

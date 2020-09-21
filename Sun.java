@@ -19,16 +19,16 @@ public class Sun extends Piece
     //check if the clicked mouse position is an ally or not, if ally then return false else proceed to do checking for obstacles
     public boolean isValidMove(GameBoard board, GameBoardSpot start, GameBoardSpot end)
     {
-    	System.out.println("Sun Check Point 1");
-
+    	//check if the clicked mouse position is an ally or not, if ally then return false else proceed to do checking for obstacles
     	if(end.getPiece() != null) {
-	        if (start.getPiece().getColor() == end.getPiece().getColor())//check if the clicked mouse position is an ally or not, if ally then return false else proceed to do checking for obstacles
+	        if (start.getPiece().getColor() == end.getPiece().getColor())
 	        {
 	        	System.out.println("Plus Check Point 1.2");
 	            return false;//if the end spot is ally then return false
 	        }
     	}
     	
+    	//else check movement
     	return movementType.checkValidMove(board, start, end, false);
     }
 }

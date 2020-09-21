@@ -4,7 +4,7 @@ public class MovementLShape implements MovementBehavior {
 	@Override
 	public boolean checkValidMove(GameBoard board, GameBoardSpot start, GameBoardSpot end, boolean direction) {
 		
-		//else check movement
+		
     	int tempx = end.getX() - start.getX();
     	int tempy = end.getY() - start.getY();
     	int checktempx = java.lang.Math.abs(tempx);

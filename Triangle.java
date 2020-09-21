@@ -24,7 +24,7 @@ public class Triangle extends Piece
 	        }
     	} 
  
-    	//check for obstacle
+    	//else check for obstacle and movement
     	return movementType.checkValidMove(board, start, end, false);
 
     }

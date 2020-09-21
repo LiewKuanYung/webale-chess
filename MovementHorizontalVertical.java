@@ -1,5 +1,5 @@
 
-public class MovementHorizantalVertical implements MovementBehavior {
+public class MovementHorizontalVertical implements MovementBehavior {
 
 	@Override
 	public boolean checkValidMove(GameBoard board, GameBoardSpot start, GameBoardSpot end, boolean direction) {

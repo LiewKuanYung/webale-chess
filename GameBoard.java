@@ -44,7 +44,7 @@ public class GameBoard {
 		} 
 		
 		/*****For Back-end Checking Purpose *****/
-		System.out.println("Result: X:" + boxes[y][x].getX() + " Y:" + boxes[y][x].getY());
+		System.out.print("Result: X:" + boxes[y][x].getX() + " Y:" + boxes[y][x].getY());
 		if(!boxes[y][x].isEmpty()) { System.out.println(boxes[y][x].getPiece().getPieceInfo());}
 		else if (boxes[y][x].isEmpty()) {System.out.println("Empty");}
 		/*****For Back-end Checking Purpose *****/
