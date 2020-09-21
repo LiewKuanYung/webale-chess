@@ -46,6 +46,7 @@ class StartActionListener implements ActionListener{
 	}
 	public void actionPerformed(ActionEvent e) {
 
+		//initiate the game board and game menu
 		gameMenu = new GameMenu();
 		controller = new GameMenuController(gameMenu,boardController);
 		mainMenu.getContentPane().removeAll();
@@ -55,6 +56,7 @@ class StartActionListener implements ActionListener{
 		mainMenu.add(boardController.getBoardView());
 	}
 }
+
 
 //Provide action listener to load game button
 class LoadActionListener implements ActionListener{
@@ -72,11 +74,9 @@ class LoadActionListener implements ActionListener{
 	
 	public void actionPerformed(ActionEvent e) {
 		try {
-			
-			System.out.println("Load Check Point: Start");
+
 			File file = new File("saveFile.txt");
 			Scanner scan = new Scanner(file);
-			System.out.println("Load Check Point: set up");
 			
 			int numberOfLines = 0;
 			while(scan.hasNextLine()) { //Skip to line 5 
@@ -102,13 +102,14 @@ class LoadActionListener implements ActionListener{
 			System.out.println("Load Game Error.");
 		}
 		
+		//initiate the game board and game menu
 		gameMenu = new GameMenu();
 		frameController = new GameMenuController(gameMenu,boardController);
 		mainMenu.getContentPane().removeAll();
 		mainMenu.getContentPane().repaint();
 		mainMenu.getContentPane().revalidate();
 		mainMenu.setJMenuBar(gameMenu);
-		boardController.getBoardModel().loadBoard(loadPiecesList);
+		boardController.loadBoard(loadPiecesList);
 		mainMenu.add(boardController.getBoardView());
 	}
 }

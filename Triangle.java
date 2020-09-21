@@ -12,7 +12,6 @@ public class Triangle extends Piece
     	}
     	
     	movementType = new MovementDiagonal();
-        
     }
     
     public boolean isValidMove(GameBoard board, GameBoardSpot start, GameBoardSpot end)//check if the clicked mouse position is an ally or not, if ally then return false else proceed to do checking for obstacles

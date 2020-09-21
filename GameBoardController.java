@@ -37,6 +37,13 @@ public class GameBoardController{
 		this.boardView.setAllPiecesIcon(boardModel.getBluePieceList());
 	}
 	
+	public void loadBoard(ArrayList<String> loadPiecesList) {
+		boardModel.loadBoard(loadPiecesList);
+		boardView.clearBoardView();
+		this.boardView.setAllPiecesRotatedIcon(boardModel.getRedPieceList());
+		this.boardView.setAllPiecesIcon(boardModel.getBluePieceList());
+	}
+	
 	public class BoardListener implements ActionListener {
 		
 		public Player currentPlayer;

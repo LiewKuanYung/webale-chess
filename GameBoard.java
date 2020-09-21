@@ -161,6 +161,8 @@ public class GameBoard {
 		
 		int redCount = 0;
 		int blueCount = 0;
+		String red = "R";
+		String blue = "B";
 		System.out.println(loadPiecesList.size());
 		for(int i = 0; i < loadPiecesList.size(); i++) {
 
@@ -171,61 +173,60 @@ public class GameBoard {
 			info[2] = loadPiecesList.get(i).charAt(2);
 			info[3] = loadPiecesList.get(i).charAt(3);
 			String pieceName = String.valueOf(info);
-			String pieceColor = Character.toString(info[3]);
 			int x = Character.getNumericValue(loadPiecesList.get(i).charAt(4));
 			int y = Character.getNumericValue(loadPiecesList.get(i).charAt(5));
 			System.out.println("loadBoard " + pieceName +" " + x + y);
 			switch(pieceName) 
 			{
 			case "SUNR" :
-				redPieceList.add(new Sun(x, y, pieceColor));
+				redPieceList.add(new Sun(x, y, red));
 				boxes[y][x].setPiece(redPieceList.get(redCount));
 				redCount++;
 				System.out.println("***** ***** Check SUN ***** *****");
 				break;
 			case "PLSR" :
-				redPieceList.add(new Plus(x, y, pieceColor));
+				redPieceList.add(new Plus(x, y, red));
 				boxes[y][x].setPiece(redPieceList.get(redCount));
 				redCount++;
 				break;
 			case "TRIR" :
-				redPieceList.add(new Triangle(x, y, pieceColor));
+				redPieceList.add(new Triangle(x, y, red));
 				boxes[y][x].setPiece(redPieceList.get(redCount));
 				redCount++;
 				break;
 			case "CHVR" :
-				redPieceList.add(new Chevron(x, y, pieceColor));
+				redPieceList.add(new Chevron(x, y, red));
 				boxes[y][x].setPiece(redPieceList.get(redCount));
 				redCount++;
 				break;
 			case "ARRR" :
-				redPieceList.add(new Arrow(x, y, pieceColor));
+				redPieceList.add(new Arrow(x, y, red));
 				boxes[y][x].setPiece(redPieceList.get(redCount));
 				redCount++;
 				break;
 			case "SUNB" :
-				bluePieceList.add(new Sun(x, y, pieceColor));
+				bluePieceList.add(new Sun(x, y, blue));
 				boxes[y][x].setPiece(bluePieceList.get(blueCount));
 				blueCount++;
 				System.out.println("***** ***** Check SUN B ***** *****");
 				break;
 			case "PLSB" :
-				bluePieceList.add(new Plus(x, y, pieceColor));
+				bluePieceList.add(new Plus(x, y, blue));
 				boxes[y][x].setPiece(bluePieceList.get(blueCount));
 				blueCount++;
 				break;
 			case "TRIB" :
-				bluePieceList.add(new Triangle(x, y, pieceColor));
+				bluePieceList.add(new Triangle(x, y, blue));
 				boxes[y][x].setPiece(bluePieceList.get(blueCount));
 				blueCount++;
 				break;
 			case "CHVB" :
-				bluePieceList.add(new Chevron(x, y, pieceColor));
+				bluePieceList.add(new Chevron(x, y, blue));
 				boxes[y][x].setPiece(bluePieceList.get(blueCount));
 				blueCount++;
 				break;
 			case "ARRB" :
-				bluePieceList.add(new Arrow(x, y, pieceColor));
+				bluePieceList.add(new Arrow(x, y, blue));
 				boxes[y][x].setPiece(bluePieceList.get(blueCount));
 				blueCount++;
 				break;
