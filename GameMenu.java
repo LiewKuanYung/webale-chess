@@ -1,12 +1,11 @@
 /**
  * @author Ivan Yap Mou En
- * @ID 1191
  */
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;  
-// by Yap Mou En
+
 //A view class for game menu
 public class GameMenu extends JMenuBar {  
 	JMenu menu1,menu2;

@@ -82,16 +82,28 @@ public class GameBoardView extends JPanel {
 		currentPlayer.setBackground(new Color(255, 102, 102));;
 	}
 	
-	public void changeSideBar(int totalMoveCount) {
+	public void changeSideBar(int totalMoveCount, GameStatus status) {
 		
 		if((totalMoveCount) % 2 == 0) { //Current player is blue
-			currentPlayer.setText("Blue To Move");
-			currentPlayer.setForeground(Color.white);
-			currentPlayer.setBackground(new Color(100, 204, 255));
+			if(status != GameStatus.ACTIVE) {
+				currentPlayer.setText("!Blue Lost!");
+				currentPlayer.setForeground(Color.white);
+				currentPlayer.setBackground(new Color(100, 204, 255));
+			} else {
+				currentPlayer.setText("Blue To Move");
+				currentPlayer.setForeground(Color.white);
+				currentPlayer.setBackground(new Color(100, 204, 255));
+			}
 		} else { //Current player is red
-			currentPlayer.setText("Red To Move");
-			currentPlayer.setForeground(Color.white);
-			currentPlayer.setBackground(new Color(255, 102, 102));
+			if(status != GameStatus.ACTIVE) {
+				currentPlayer.setText("!Red Lost!");
+				currentPlayer.setForeground(Color.white);
+				currentPlayer.setBackground(new Color(255, 102, 102));
+			} else {
+				currentPlayer.setText("Red To Move");
+				currentPlayer.setForeground(Color.white);
+				currentPlayer.setBackground(new Color(255, 102, 102));
+			}
 		}
 		
 	}
@@ -195,21 +207,23 @@ public class GameBoardView extends JPanel {
 	 * To face up	: flip must == direction
 	 * To face down	: flip or direction == true
 	 */
-	public void setArrowIcon(Arrow rotatePiece, boolean flip) {
+	public void setArrowIcon(Arrow arrowPiece, boolean flip) {
 		try {
-			int tempy = rotatePiece.getCurrentY();
+			int tempy = arrowPiece.getCurrentY();
+			int tempx = arrowPiece.getCurrentX();
 			if(flip) {
 				tempy = 7 - tempy;
-			}
-			if ((rotatePiece.getDirection() && flip) || (!rotatePiece.getDirection() && !flip)) { //Use rotated icon (face down) if piece reaches the top
-				BufferedImage originalIcon = ImageIO.read(getClass().getResource(rotatePiece.getPieceIcon()));
+				tempx = 6 - tempx;
+			} 
+			if ((arrowPiece.getDirection() && flip) || (!arrowPiece.getDirection() && !flip)) { //Use rotated icon (face down) if piece reaches the top
+				BufferedImage originalIcon = ImageIO.read(getClass().getResource(arrowPiece.getPieceIcon()));
 				BufferedImage rotatedIcon = rotate(originalIcon, 180.0);
 				Image icon = rotatedIcon.getScaledInstance(50,50,Image.SCALE_SMOOTH);
-				btn[tempy][rotatePiece.getCurrentX()].setIcon(new ImageIcon(icon));
-			} else if (rotatePiece.getDirection() || flip) { //Use original icon (face up) if piece reaches the bottom
-				BufferedImage originalIcon = ImageIO.read(getClass().getResource(rotatePiece.getPieceIcon()));
+				btn[tempy][tempx].setIcon(new ImageIcon(icon));
+			} else if (arrowPiece.getDirection() || flip) { //Use original icon (face up) if piece reaches the bottom
+				BufferedImage originalIcon = ImageIO.read(getClass().getResource(arrowPiece.getPieceIcon()));
 				Image icon = originalIcon.getScaledInstance(50,50,Image.SCALE_SMOOTH);
-				btn[tempy][rotatePiece.getCurrentX()].setIcon(new ImageIcon(icon));
+				btn[tempy][tempx].setIcon(new ImageIcon(icon));
 			}else {
 				throw new Exception("Exception: rotateOneIcon");
 			}
@@ -223,13 +237,13 @@ public class GameBoardView extends JPanel {
 	 * 
 	 * 	 4 possible scenario
 	 * ---------------------------------------------------
-	 * |  flip	|  color |   view	|  model   |Direction|
-	 * |		|		 | Position | Position | facing	 |
+	 * |  flip	|  color |   view	|  model   |Direction| X - axis
+	 * |		|		 | Position | Position | facing	 | 
 	 * |--------|--------|----------|----------|---------|
-	 * |	F	|	 R	 |   top    | bottom   |  up	 |
-	 * |	F	|  	 B   |  bottom  |	top	   |  down	 |
-	 * |	T	|	 R   |  bottom  | bottom   |  down	 |
-	 * |	T	|	 B	 |   top	|   top    |  up	 |
+	 * |	F	|	 R	 |   top    | bottom   |  down	 | 
+	 * |	F	|  	 B   |  bottom  |	top	   |  up	 |
+	 * |	T	|	 R   |  bottom  | bottom   |  up	 | inverse 
+	 * |	T	|	 B	 |   top	|   top    |  down	 | inverse
 	 * ---------------------------------------------------
 	 * 
 	 * To face up	: (!flip && B) || (Flip && R) // original image
@@ -238,23 +252,27 @@ public class GameBoardView extends JPanel {
 	 * 
 	 * View position
 	 * Model position R always at bottom
-	 * 		if !flip : use original Y
-	 * 		if flip  : use inverse Y
+	 * 		if !flip : use original XY
+	 * 		if flip  : use inverse X & inverse Y 
 	 * Model position B always at top
-	 * 		if !flip : use original Y
-	 * 		if flip  : use inverse Y
+	 * 		if !flip : use original XY
+	 * 		if flip  : use inverse X & inverse Y
 	 */
 	public void displayBoard(GameBoardSpot[][] board, boolean flip) {
 		try {
 			clearBoardView();
-			System.out.print("\n***displayBoard***\n" 
+			System.out.print("\n******displayBoard******\n" 
 							+ " Y_" + board.length + " X_" + board[0].length + "  flip: " + flip
-							+ "\n*** ********** ***\n");
+							+ "\n****** ********** ******\n");
 			for(int i = 0; i<board.length; i++) {//Row //Y axis
 				for(int j = 0; j<board[i].length; j++) {//Column //X axis
 					if(board[i][j].getPiece() == null) {System.out.print("null   ");continue;}					
-					int currentY = board[i][j].getPiece().getCurrentY();
-					if(flip) { currentY = 7 - currentY;}
+					int tempy = board[i][j].getPiece().getCurrentY();
+					int tempx = board[i][j].getPiece().getCurrentX();
+					if(flip) { 
+						tempy = 7 - tempy;
+						tempx = 6 - tempx;
+					}
 					if(board[i][j].getPiece() instanceof Arrow) {
 						System.out.print(board[i][j].getPiece().getPieceInfo()+" ");
 						setArrowIcon((Arrow)board[i][j].getPiece(), flip);
@@ -262,16 +280,18 @@ public class GameBoardView extends JPanel {
 						System.out.print(board[i][j].getPiece().getPieceInfo() + " ");
 						BufferedImage originalIcon = ImageIO.read(getClass().getResource(board[i][j].getPiece().getPieceIcon()));
 						Image icon = originalIcon.getScaledInstance(50,50,Image.SCALE_SMOOTH);
-						btn[currentY][board[i][j].getPiece().getCurrentX()].setIcon(new ImageIcon(icon));
+						btn[tempy][tempx].setIcon(new ImageIcon(icon));
 					} else if ( (!flip && board[i][j].getPiece().getColor() == "B") || (flip && board[i][j].getPiece().getColor() == "R") ) {
 						System.out.print(board[i][j].getPiece().getPieceInfo() + " ");
 						BufferedImage originalIcon = ImageIO.read(getClass().getResource(board[i][j].getPiece().getPieceIcon()));
 						BufferedImage rotatedIcon = rotate(originalIcon, 180.0);
 						Image icon = rotatedIcon.getScaledInstance(50,50,Image.SCALE_SMOOTH);
-						btn[currentY][board[i][j].getPiece().getCurrentX()].setIcon(new ImageIcon(icon));
+						btn[tempy][tempx].setIcon(new ImageIcon(icon));
 					}
 				} System.out.print("\n");
-			}System.out.println("**********\n end \n**********\n");
+			}System.out.println("********** **********\n" 
+							  + " Display boardView "
+							  + "\n********** **********\n");
 		}
 		catch (Exception ex) {
 			System.out.println("Pieces Image not found: setPieceIcon");

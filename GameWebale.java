@@ -1,6 +1,5 @@
 /**
  * @author Liew Kuan Yung
- * @ID 1191301064
  */
 
 import java.util.*;
@@ -48,12 +47,16 @@ public class GameWebale {
 	public boolean playerMove(Player player, int startX, int startY, 
 			int endX, int endY) 
 	{ 
-		if( status != GameStatus.ACTIVE) {
-			return false;
-		}
 		GameBoardSpot startBox = null;
 		GameBoardSpot endBox = null;
 		try {
+			//check game status
+			if( status != GameStatus.ACTIVE) {
+				return false;
+			}
+			System.out.println("Game status is not ACTIVE");
+			
+			//initialize startBox and endBox
 			startBox = board.getSpot(startX, startY);
 			System.out.println("playerMove: start xy "+ startX + " "+ startY);
 			if(startBox.getPiece() == null) {

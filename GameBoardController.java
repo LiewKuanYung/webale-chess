@@ -6,7 +6,6 @@
 import java.awt.event.*;
 import javax.swing.JButton;
 import java.util.*;
-//by Liew Kuan Yung
 public class GameBoardController{
 	
 	// ---------------------------------------------
@@ -81,13 +80,20 @@ public class GameBoardController{
 	}
 	
 	public void resetBoard() {
+		
+		//Game Webale reset
 		boardModel.resetBoard();
 		boardView.clearBoardView();
 		boardView.displayBoard(boardModel.getEntireGameBoardSpot(), false); //false because no flip
+		gameWebale.setStatus(GameStatus.ACTIVE);
+		totalMoveCount = 1;
 		
-		// Set the value for the current memento				
+		// Reset the value for the current memento	
+		savedMemento = 0;
 		originator.set(boardModel.getEntireGameBoardSpot(), totalMoveCount);
-		// Add new article to the ArrayList	
+		// Clear ArrayList
+		caretaker.clearGameBoardMemento();
+		// Add new article to the ArrayList
 		caretaker.addGameBoardMemento( originator.storeInGameBoardMemento());
 	}
 	
@@ -134,7 +140,8 @@ public class GameBoardController{
 				GameBoardButton clicked = (GameBoardButton)obj;
 				int c = clicked.getCol();
 				int r = clicked.getRow();
-				int r2 = r; // for flip board
+				int r_Flip = r; // for flip board
+				int c_Flip = c;
 	
 				System.out.println("Clicked X:"+ c + " Y:" + r);
 				
@@ -143,40 +150,40 @@ public class GameBoardController{
 					// 2nd Player's turn: Red Player
 					this.currentPlayer = players[1];
 					flip = true; //flip the board upside down
-					r2 = 7 - r2;
-					System.out.println("Current player is player[1] red");
+					r_Flip = 7 - r_Flip;
+					c_Flip = 6 - c_Flip;
+					System.out.println("Current player is player[1] blue");
 				} 
 				else { 
 					// 1st Player's turn: Blue Player
 					this.currentPlayer = players[0]; 
 					flip = false; //original board
-					System.out.println("Current player is player[0] blue");
+					System.out.println("Current player is player[0] red");
 				} 
 				
 				try {
 					if(clickCount == 0) {
 						
-						
 						//Store first click
-						clickStored[0]=c;
-						clickStored[1]=r2;
+						clickStored[0]=c_Flip;
+						clickStored[1]=r_Flip;
 						clickCount++;
 						System.out.println("First Click: " + clickCount);
 						
 						
 						//Show selected JButton 
-						String tempColor = boardModel.getSpot(c, r2).getPiece().getColor();
+						String tempColor = boardModel.getSpot(c_Flip, r_Flip).getPiece().getColor();
 						boardView.showButtonColor(c ,r, tempColor);
 						//Show all possible move at JButton
-						if(!boardModel.getSpot(c, r2).isEmpty()) {
-							showAllValidMove(c, r2, flip, tempColor);
+						if(!boardModel.getSpot(c_Flip, r_Flip).isEmpty()) {
+							showAllValidMove(c_Flip, r_Flip, flip, tempColor);
 						}
 					}
 					else if(clickCount == 1) {
 						
 						//Store second click
-						clickStored[2]=c;
-						clickStored[3]=r2;
+						clickStored[2]=c_Flip;
+						clickStored[3]=r_Flip;
 						clickCount = 0;
 						System.out.println("Second Click:"  + clickCount);
 						
@@ -193,14 +200,16 @@ public class GameBoardController{
 						if(isValidPlayerMove){
 							totalMoveCount++;
 							System.out.println("total move count:" + totalMoveCount);
-							movedPiece.move(clickStored[0],clickStored[1],clickStored[2],clickStored[3]);
 							
 							//Change Plus to Triangle, vice versa
 							changePlusToTriangle();
 							
+							//move the piece (isCaptured piece = null)
+							movedPiece.move(clickStored[0],clickStored[1],clickStored[2],clickStored[3]);
+							
 							for(int i = 0; i < 50000 ; i++) {} //delay for a while
 							boardView.displayBoard(boardModel.getEntireGameBoardSpot(), !flip); //change flip
-							boardView.changeSideBar(totalMoveCount);
+							boardView.changeSideBar(totalMoveCount, gameWebale.getStatus());
 							
 							//-------------------------------------------------------------------
 							// SAVE GAME MEMENTO
@@ -250,7 +259,9 @@ public class GameBoardController{
 					GameBoardSpot[][] tempGameBoardSpot = originator.restoreBoard( caretaker.getMemento(totalMoveCount-1) );
 					GameBoardSpot[][] newGameBoardSpot = boardModel.getEntireGameBoardSpot();
 					
-					System.out.print("\n\nInside Undo Button\n");
+					System.out.print( "\n********************\n"
+									+ " Inside Undo Button" 
+									+ "\n********************\n");
 					for(int y = 0; y < 8; y++){
 						for(int x = 0; x < 7; x++){
 							newGameBoardSpot[y][x] = tempGameBoardSpot[y][x];
@@ -262,7 +273,7 @@ public class GameBoardController{
 							
 						} System.out.print("\n");
 					}System.out.print("\n********************\n"
-									+ " Inside Undo Button" 
+									+ " Outside Undo Button" 
 									+ "\n********************\n");
 					caretaker.removeGameBoardMemento();
 								
@@ -275,7 +286,8 @@ public class GameBoardController{
 					
 					for(int i = 0; i < 50000 ; i++) {} //delay for a while
 					boardView.displayBoard(boardModel.getEntireGameBoardSpot(), flip);
-					boardView.changeSideBar(totalMoveCount);
+					gameWebale.setStatus(GameStatus.ACTIVE);
+					boardView.changeSideBar(totalMoveCount, gameWebale.getStatus());
 					
 				
 				} else {
@@ -293,7 +305,7 @@ public class GameBoardController{
 					if(boardModel.getSpot(startX,startY).getPiece().isValidMove(boardModel, 
 							boardModel.getSpot(startX,startY), boardModel.getSpot(x,y))) {
 						if(flip) {
-							boardView.showButtonColor(x,(7-y),color);
+							boardView.showButtonColor((6-x),(7-y),color);
 						} else {
 							boardView.showButtonColor(x,y,color);
 						}
@@ -303,13 +315,15 @@ public class GameBoardController{
 		}
 
 		public void changePlusToTriangle() throws Exception {
-			if(totalMoveCount % 4 == 0) {
+			if((totalMoveCount - 1) % 4 == 0) {
 				for(int y = 0; y < 8; y++){
 					for(int x = 0; x < 7; x++){
-						if(!boardModel.getSpot(x,y).isEmpty()){
-							if(boardModel.getSpot(x,y).getPiece() instanceof Plus 
-									|| boardModel.getSpot(x,y).getPiece() instanceof Triangle) {
-								boardModel.changePlusAndTriangle(x, y);
+						if(!boardModel.getSpot(x,y).isEmpty() ){
+							if(!boardModel.getSpot(x,y).getPiece().isCaptured()) {
+								if(boardModel.getSpot(x,y).getPiece() instanceof Plus 
+										|| boardModel.getSpot(x,y).getPiece() instanceof Triangle) {
+									boardModel.changePlusAndTriangle(x, y);
+								}
 							} 
 						}
 					}

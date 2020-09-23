@@ -1,4 +1,6 @@
-// By Eugene
+/**
+ * @author Eugene
+ */
 public class Plus extends Piece
 {
     
