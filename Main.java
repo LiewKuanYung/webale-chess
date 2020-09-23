@@ -29,8 +29,9 @@ public class Main {
 		Player player2 = null;
 		
 		try {
-			player1 = new Player(true, "R");
-			player2 = new Player(false, "B");
+			boolean isPlayer1 = true;
+			player1 = new Player(isPlayer1, "R");
+			player2 = new Player(!isPlayer1, "B");
 		} 
 		catch (Exception e) {
 			System.out.println("Exception: Main.java Player setting");

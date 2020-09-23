@@ -37,7 +37,7 @@ class StartActionListener implements ActionListener{
 
 	MainMenu mainMenu;
 	GameMenu gameMenu;
-	GameMenuController controller;
+	GameMenuController frameController;
 	GameBoardController boardController;
 
 	StartActionListener(MainMenu mainMenu, GameBoardController boardController){
@@ -48,7 +48,7 @@ class StartActionListener implements ActionListener{
 
 		//initiate the game board and game menu
 		gameMenu = new GameMenu();
-		controller = new GameMenuController(gameMenu,boardController);
+		frameController = new GameMenuController(gameMenu, boardController);
 		mainMenu.getContentPane().removeAll();
 		mainMenu.getContentPane().repaint();
 		mainMenu.getContentPane().revalidate();
@@ -66,6 +66,7 @@ class LoadActionListener implements ActionListener{
 	GameMenuController frameController;
 	GameBoardController boardController;
 	private ArrayList<String> loadPiecesList = new ArrayList<>();
+	private int totalMoveCount;
 	
 	LoadActionListener(MainMenu mainMenu, GameBoardController boardController){
 		this.mainMenu = mainMenu;
@@ -79,21 +80,23 @@ class LoadActionListener implements ActionListener{
 			Scanner scan = new Scanner(file);
 			
 			int numberOfLines = 0;
-			while(scan.hasNextLine()) { //Skip to line 5 
+			while(scan.hasNextLine() && numberOfLines < 6) { //Skip to line 7 
 				numberOfLines++;
 				System.out.println(scan.nextLine());
 				System.out.println(numberOfLines); 
-				if(numberOfLines == 5) {
-					break;
-				}
 			}  
 			
-			while (scan.hasNext()) { // load all data
-		        String data = scan.next();
+			// add Move Count
+			totalMoveCount = Integer.valueOf(scan.next());
+			System.out.println("\n\nMove Count: "+totalMoveCount);
+			
+			// add board pieces
+			while (scan.hasNext()) {
+				String data = scan.next();
 		        if(data.length()>4){
 		        	loadPiecesList.add(data);
 		        }
-		        System.out.print(data);
+		        System.out.print(data + " ");
 		      }
 			System.out.println("Succesfully loaded all data");
 			scan.close();
@@ -104,12 +107,12 @@ class LoadActionListener implements ActionListener{
 		
 		//initiate the game board and game menu
 		gameMenu = new GameMenu();
-		frameController = new GameMenuController(gameMenu,boardController);
+		frameController = new GameMenuController(gameMenu, boardController);
 		mainMenu.getContentPane().removeAll();
 		mainMenu.getContentPane().repaint();
 		mainMenu.getContentPane().revalidate();
 		mainMenu.setJMenuBar(gameMenu);
-		boardController.loadBoard(loadPiecesList);
+		boardController.loadBoard(loadPiecesList, totalMoveCount);
 		mainMenu.add(boardController.getBoardView());
 	}
 }

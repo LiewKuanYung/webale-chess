@@ -1,6 +1,7 @@
 public class Arrow extends Piece
 {
     private boolean direction;
+    
     Arrow(int x, int y, String color)
     {
     	super(x,y,color);
@@ -12,13 +13,10 @@ public class Arrow extends Piece
     		super.setPieceIcon("images/Blue_Arrow.png");
     	}
     	
-    	if (color == "R")//top piece
-    	{
-    	    this.direction = false; // facing to South (down)
-    	}
-    	else if (color == "B")//bottom piece
-    	{
-    	    this.direction = true; //facing to North (up)
+    	if (color == "R"){//top piece
+    	    this.direction = true; // facing to North (up)
+    	} else {//bottom piece
+    	    this.direction = false; //facing to South (down)
     	}
     	
     	movementType = new MovementArrow();
@@ -29,10 +27,10 @@ public class Arrow extends Piece
     }
     
     public void checkChangeDirection() {
-    	if (direction && super.getCurrentY() == 7){
-    		direction = false;
-    	} else if (!direction && super.getCurrentY() == 0) {
+    	if (!direction && super.getCurrentY() == 7){
     		direction = true;
+    	} else if (direction && super.getCurrentY() == 0) {
+    		direction = false;
     	}
     }
     

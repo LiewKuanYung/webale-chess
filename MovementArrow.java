@@ -10,15 +10,15 @@ public class MovementArrow implements MovementBehavior {
     	
     	if (direction)
     	{
-    		if (tempy == 1 && tempx ==0)
+    		if (tempy == -1 && tempx ==0)
     		{
     			return true;//making 1 tile step so no need check for obstacle
     		}
-    		else if (tempy == 2 && tempx ==0)
+    		else if (tempy == -2 && tempx ==0)
     		{
     			try {
-    				if (!board.getSpot(end.getX(),end.getY()-1).isEmpty())
-    				{
+    				if (!board.getSpot(end.getX(),end.getY()+1).isEmpty())
+    				{System.out.println("Arrow false move");
     					return false;
     				}
     				else
@@ -26,8 +26,7 @@ public class MovementArrow implements MovementBehavior {
     					return true;
     				}
     			} catch (Exception e) {
-    				// TODO Auto-generated catch block
-    				e.printStackTrace();
+    				System.out.println("Exception: MovementArrow");
     			}
     		}
     		else //if it is not the movement rule of Arrow
@@ -38,15 +37,15 @@ public class MovementArrow implements MovementBehavior {
     	}
     	else if (!direction)
     	{
-    		if (tempy == -1 && tempx ==0)
+    		if (tempy == 1 && tempx ==0)
     		{
     			return true;//making 1 tile step so no need check for obstacle
     		}
-    		else if (tempy == -2 && tempx ==0)
+    		else if (tempy == 2 && tempx ==0)
     		{
     			try {
-    				if (!board.getSpot(end.getX(),end.getY()+1).isEmpty())
-    				{
+    				if (!board.getSpot(end.getX(),end.getY()-1).isEmpty())
+    				{System.out.println("Arrow false move");
     					return false;
     				}
     				else
@@ -54,8 +53,7 @@ public class MovementArrow implements MovementBehavior {
     					return true;
     				}
     			} catch (Exception e) {
-    				// TODO Auto-generated catch block
-    				e.printStackTrace();
+    				System.out.println("Exception: MovementArrow");
     			}
     		}
     		else //if it is not the movement rule of Arrow

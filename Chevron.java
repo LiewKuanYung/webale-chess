@@ -10,7 +10,6 @@ public class Chevron extends Piece
     	} else {
     		super.setPieceIcon("images/Blue_Chevron.png");
     	}
-    	
     	movementType = new MovementLShape();
     }
     

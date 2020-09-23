@@ -1,3 +1,8 @@
+/**
+ * @author Liew Kuan Yung
+ * @ID 1191301064
+ */
+
 import javax.swing.JButton;
 
 class GameBoardButton extends JButton {

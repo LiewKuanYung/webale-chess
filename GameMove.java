@@ -1,3 +1,8 @@
+/**
+ * @author Liew Kuan Yung
+ * @ID 1191301064
+ */
+
 
 public class GameMove { 
 	private Player player; 
@@ -30,7 +35,7 @@ public class GameMove {
 		return pieceMoved;
 	}
 	
-	public void setPieceKilled(Piece piece) {
+	public void setPieceCaptured(Piece piece) {
 		this.pieceCaptured = piece;
 	}
 	

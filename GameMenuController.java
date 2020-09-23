@@ -1,3 +1,8 @@
+/**
+ * @author Ivan Yap Mou En
+ * @ID 1191
+ */
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -62,7 +67,10 @@ public class GameMenuController {
 			 try {
 				 FileWriter writer = new FileWriter("saveFile.txt");
 				 writer.write("Piece name: SUN = SUN, CHEVRON = CHV, TRIANGLE = TRI, PLUS = PLS, ARROW = ARR\n"+ 
-						 "Color: R for Red, B for Blue\n" + "Piece Name + Color\n" + "***Null means that there is no chess piece on that spot***\n\n");
+						 	  "Color: R for Red, B for Blue\n" + 
+						 	  "Piece code: Piece Name + Color + location X + location Y\n" + 
+						 	  "***null means that there is no chess piece on that spot***\n\n");
+				 writer.write("Move Counter: \n" + boardController.getTotalMoveCount() + "\n\n" );
 
 				 for(int y = 0; y < 8; y++){
 					 for(int x = 0; x < 7; x++){
@@ -75,7 +83,7 @@ public class GameMenuController {
 					 }
 					 // write new line
 					 writer.write("\r\n");  
-				 }		    	
+				 }
 				 writer.close();
 			 }
 			 catch (Exception ex) {

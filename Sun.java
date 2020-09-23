@@ -23,7 +23,6 @@ public class Sun extends Piece
     	if(end.getPiece() != null) {
 	        if (start.getPiece().getColor() == end.getPiece().getColor())
 	        {
-	        	System.out.println("Plus Check Point 1.2");
 	            return false;//if the end spot is ally then return false
 	        }
     	}

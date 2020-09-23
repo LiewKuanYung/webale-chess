@@ -29,7 +29,7 @@ public class MovementHorizontalVertical implements MovementBehavior {
     				}					
     			}
     		} catch (Exception e) {
-    			System.out.println("Exception: Plus");
+    			System.out.println("Exception: MovementHorizontalVertical");
     		}
     	}
     	else if (tempx == 0 && tempy < 0) //Y axis moving down
@@ -48,7 +48,7 @@ public class MovementHorizontalVertical implements MovementBehavior {
     				}
     			}
     		} catch (Exception e) {
-    			System.out.println("Exception: Plus");
+    			System.out.println("Exception: MovementHorizontalVertical");
     		}
     	}
     	else if (tempy == 0 && tempx > 0) //X axis moving right
@@ -67,7 +67,7 @@ public class MovementHorizontalVertical implements MovementBehavior {
     				}
     			}
     		} catch (Exception e) {
-    			System.out.println("Exception: Plus");
+    			System.out.println("Exception: MovementHorizontalVertical");
     		}
 
     	}
@@ -87,7 +87,7 @@ public class MovementHorizontalVertical implements MovementBehavior {
     				}
     			}
     		} catch (Exception e) {
-    			System.out.println("Exception: Plus");
+    			System.out.println("Exception: MovementHorizontalVertical");
     		}
     	}
     	else //If it is not the movement rule of Plus

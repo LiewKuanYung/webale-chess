@@ -1,13 +1,16 @@
 Piece name: SUN = SUN, CHEVRON = CHV, TRIANGLE = TRI, PLUS = PLS, ARROW = ARR
 Color: R for Red, B for Blue
-Piece Name + Color
-***Null means that there is no chess piece on that spot***
+Piece code: Piece Name + Color + location X + location Y
+***null means that there is no chess piece on that spot***
 
-TRIB00 PLSB10 CHVB20 SUNB30 CHVB40 null   null   
-ARRB01 null   ARRB21 null   null   null   ARRB61 
+Move Counter: 
+3
+
+PLSB00 TRIB10 CHVB20 null   CHVB40 TRIB50 PLSB60 
+ARRB01 null   ARRB21 SUNB31 ARRB41 null   ARRB61 
 null   null   null   null   null   null   null   
-null   null   null   null   ARRB43 null   null   
-null   null   null   null   ARRR44 null   null   
-PLSB05 TRIB15 null   null   null   null   null   
-ARRR06 null   ARRR26 null   null   null   ARRR66 
-TRIR07 PLSR17 CHVR27 SUNR37 CHVR47 PLSR57 TRIR67 
+null   null   null   null   null   null   null   
+null   null   ARRR24 null   null   null   null   
+null   null   null   null   null   null   null   
+ARRR06 null   null   null   ARRR46 null   ARRR66 
+PLSR07 TRIR17 CHVR27 SUNR37 CHVR47 TRIR57 PLSR67 

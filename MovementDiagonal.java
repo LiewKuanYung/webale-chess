@@ -84,7 +84,7 @@ public class MovementDiagonal implements MovementBehavior {
 	    					}
 	    				}
 	    			}catch(Exception e){
-	    				System.out.println("Exception: Triangle");
+	    				System.out.println("Exception: Diagonal");
 	    			}
 	    		}
     		} 
@@ -109,7 +109,7 @@ public class MovementDiagonal implements MovementBehavior {
 	    					}
 	    				}
 	    			}catch(Exception e){
-	    				System.out.println("Exception: Triangle");
+	    				System.out.println("Exception: Diagonal");
 	    			}
 	    		}
     		}

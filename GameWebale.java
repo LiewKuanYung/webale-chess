@@ -1,10 +1,16 @@
+/**
+ * @author Liew Kuan Yung
+ * @ID 1191301064
+ */
+
 import java.util.*;
 
 public class GameWebale {
 	
 	private Player[] players = new Player[2];
-	private GameBoard board; 
 	private Player currentTurn; 
+	private GameBoard board; 
+	private GameStatus status;
 	private ArrayList<GameMove> gameMovesPlayed = new ArrayList<GameMove>(); 
 	
 	GameWebale(GameBoard board, Player p1, Player p2){
@@ -20,32 +26,54 @@ public class GameWebale {
 		board.resetBoard(); 
 
 		if (p1.isColorRed()) { //Red Start First
-			System.out.println("Current Player Check Point p1");
+			System.out.println("Initialize current Player to p1 Red");
 			this.currentTurn = p1; 
 		} 
 		else {
-			System.out.println("Current Player Check Point p2");
+			System.out.println("Initialize current Player to p2 Blue");
 			this.currentTurn = p2; 
 		} 
 		gameMovesPlayed.clear(); 
+		status = GameStatus.ACTIVE;
+		
 	} 
+	
+	public GameStatus getStatus() {
+		return status;
+	}
+	public void setStatus(GameStatus status) {
+		this.status = status;
+	}
 
 	public boolean playerMove(Player player, int startX, int startY, 
 			int endX, int endY) 
 	{ 
-		System.out.println("Check point playerMove 1: start xy "+ startX + " "+ startY + " end xy " + endX + " " + endY);
+		if( status != GameStatus.ACTIVE) {
+			return false;
+		}
 		GameBoardSpot startBox = null;
 		GameBoardSpot endBox = null;
 		try {
 			startBox = board.getSpot(startX, startY);
+			System.out.println("playerMove: start xy "+ startX + " "+ startY);
+			if(startBox.getPiece() == null) {
+				System.out.println("Empty");
+			} else {
+				System.out.println(startBox.getPiece().getPieceInfo());
+			}
 			endBox = board.getSpot(endX, endY);
+			System.out.println("playerMove: end xy " + endX + " " + endY);
+			if(endBox.getPiece() == null) {
+				System.out.println("Empty");
+			} else {
+				System.out.println(endBox.getPiece().getPieceInfo());
+			}
 		} catch (Exception e) {
 			System.out.println("Exception: GameWebale");
 		} 
-		System.out.println("Check Point playerMove 2 getSpot success");
 		
 		GameMove move = new GameMove(player, startBox, endBox); 
-		System.out.println("Check Point playerMove 3 GameMove Saved");
+		System.out.println("playerMove GameMove Saved");
 		return this.makeMove(move, player); 
 	} 
 	
@@ -55,54 +83,52 @@ public class GameWebale {
 		
 		Piece startPiece = move.getStart().getPiece(); 
 		if (startPiece == null) { 
-			System.out.println("null start piece");
+			System.out.println("invalid null start piece");
 			return false; 
 		} 
-		System.out.println("Check Point 4 pass startPiece test");
+		System.out.println("Check Point 1 pass startPiece not null test");
 	
 		// check valid player? 
 		if (startPiece.getColor() != player.getColor()) { 
 			System.out.println("invalid current player (color)");
 			return false; 
 		} 
-	
-		System.out.println("Check Point 5 pass color test");
+		System.out.println("Check Point 2 pass color and player test");
 		
 		// check valid move? 
 		if (!startPiece.isValidMove(board, move.getStart(), move.getEnd())) { 
 			System.out.println("invalid move");
 			return false; 
 		} 
-		
-		System.out.println("Check Point 6 pass isValidMove");
+		System.out.println("Check Point 3 pass isValidMove test");
 		
 		// check any capture? 
-		Piece endPiece = move.getStart().getPiece(); 
+		Piece endPiece = move.getEnd().getPiece(); 
 		if (endPiece != null) { 
 			endPiece.setCaptured(true); 
-			move.setPieceKilled(endPiece); 
+			move.setPieceCaptured(endPiece); 
 		} 
-		
-		System.out.println("Check Point 7 checked captured");
+		System.out.println("Check Point 4 checked captured and stored in GameMove");
 		
 		// store the move 
 		gameMovesPlayed.add(move); 
 		
 		if (endPiece != null && endPiece instanceof Sun) { 
+			System.out.println(endPiece.getPieceInfo());
 			if (player.isColorRed()) { 
-				System.out.println("Red Lost");
-				//this.setStatus(GameStatus.WHITE_WIN); 
+				System.out.println("BLUE WIN");
+				this.setStatus(GameStatus.BLUE_WIN); 
 			} 
 			else {
-				System.out.println("Blue Lost");
-				//this.setStatus(GameStatus.BLACK_WIN); 
+				System.out.println("RED WIN");
+				this.setStatus(GameStatus.RED_WIN); 
 			} 
 		}
 		
 		// move piece from the start box to end box 
 		move.getEnd().setPiece(move.getStart().getPiece()); 
 		move.getStart().setPiece(null); 
-		System.out.println("Check Point 8 reset pieces");
+		System.out.println("Check Point 5 reset pieces in GameMove");
 		
 		// set the current turn to the other player 
 		if (this.currentTurn == players[0]) { 
