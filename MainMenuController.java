@@ -1,3 +1,7 @@
+/**
+ * @author Yap Mou En
+ */
+
 import java.awt.*;  
 import java.awt.event.*;
 import javax.swing.*;
@@ -8,8 +12,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
-
-
 
 //Provide a controller class for MainMenu class
 public class MainMenuController {

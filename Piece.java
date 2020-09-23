@@ -1,3 +1,6 @@
+/**
+ * @author Liew Kuan Yung
+ */
 public abstract class Piece
 {
 	private int currentX;

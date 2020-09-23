@@ -1,3 +1,6 @@
+/**
+ * @author Eugene
+ */
 public class Chevron extends Piece
 {
     Chevron(int x, int y, String color)

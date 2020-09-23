@@ -3,7 +3,6 @@
  * @ID 1191301064
  */
 
-
 public class GameMove { 
 	private Player player; 
 	private GameBoardSpot start; 

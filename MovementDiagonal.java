@@ -1,4 +1,4 @@
-
+// by Liew Kuan Yung
 public class MovementDiagonal implements MovementBehavior {
 
 	@Override

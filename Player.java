@@ -1,5 +1,8 @@
-import java.util.*;
+/**
+ * @author Lim Ying Shen
+ */
 
+import java.util.*;
 public class Player
 {
     public boolean player1;
