@@ -1,5 +1,5 @@
 /**
- * @author Eugene
+ * @author Eugene 
  * @author Liew Kuan Yung
  */
 public class MovementArrow implements MovementBehavior {

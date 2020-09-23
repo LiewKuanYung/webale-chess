@@ -1,8 +1,8 @@
 /**
- * @author Liew Kuan Yung
+ * @author Liew Kuan Yung 
  */
 
-// Memento Design Pattern
+// Memento Design Pattern 
 public class GameBoardOriginator {
 
 	private GameBoardSpot[][] board = new GameBoardSpot[8][7];

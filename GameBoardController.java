@@ -292,6 +292,7 @@ public class GameBoardController{
 				
 				} else {
 					
+					resetBoard();
 					// Don't allow user to click Undo
 					boardView.getUndoButton().setEnabled(false);
 					

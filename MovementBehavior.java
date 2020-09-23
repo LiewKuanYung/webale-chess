@@ -1,5 +1,5 @@
 /**
- * @author Liew Kuan Yung
+ * @author Liew Kuan Yung 
  */
 
 // GOF Strategy Design Pattern

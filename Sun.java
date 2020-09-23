@@ -1,6 +1,6 @@
 /**
  * @author Eugene
- */
+ */ 
 
 public class Sun extends Piece
 {

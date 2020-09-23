@@ -1,6 +1,6 @@
 /**
  * @author Liew Kuan Yung
- */
+ */ 
 public enum GameStatus {
 	
 	ACTIVE(1),

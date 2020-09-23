@@ -1,5 +1,5 @@
 /**
- * @author Eugene
+ * @author Eugene 
  */
 public class Chevron extends Piece
 {

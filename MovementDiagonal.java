@@ -1,6 +1,6 @@
 /**
  * @author Eugene
- * @author Liew Kuan Yung
+ * @author Liew Kuan Yung 
  */
 public class MovementDiagonal implements MovementBehavior {
 

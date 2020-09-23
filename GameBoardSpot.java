@@ -1,6 +1,5 @@
 /**
  * @author Liew Kuan Yung
- * @ID 1191301064
  */
 
 public class GameBoardSpot { 

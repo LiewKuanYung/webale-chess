@@ -1,5 +1,5 @@
 /**
- * @author Eugene
+ * @author Eugene 
  */
 public class Arrow extends Piece
 {

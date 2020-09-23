@@ -1,6 +1,6 @@
 /**
  * @author Liew Kuan Yung
- */
+ */ 
 public class GameBoardMemento {
 	
 	// The board array stored in GameBoardMemento Object
