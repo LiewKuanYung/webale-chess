@@ -113,6 +113,11 @@ public class GameBoardController{
 		originator.set(boardModel.getEntireGameBoardSpot(), totalMoveCount);
 		// Add new article to the ArrayList	
 		caretaker.addGameBoardMemento( originator.storeInGameBoardMemento());
+		
+		// Reset save counter and close button
+		savedMemento = 0;
+		boardView.getUndoButton().setEnabled(false);
+	
 	}
 	
 	public class BoardListener implements ActionListener {
@@ -250,10 +255,11 @@ public class GameBoardController{
 			else { // undoButton
 				System.out.println("\n\nThis is the undo button\n");
 				
-				if(totalMoveCount > 1){
+				if(totalMoveCount > 1 && savedMemento >= 1){
 					
 					// Decrement to the current article displayed
 					totalMoveCount--;
+					savedMemento--;
 					
 					// Get the older GameBoard saved and display it in screen
 					GameBoardSpot[][] tempGameBoardSpot = originator.restoreBoard( caretaker.getMemento(totalMoveCount-1) );
@@ -289,10 +295,12 @@ public class GameBoardController{
 					gameWebale.setStatus(GameStatus.ACTIVE);
 					boardView.changeSideBar(totalMoveCount, gameWebale.getStatus());
 					
+					if(totalMoveCount == 1 || savedMemento < 1) {
+						boardView.getUndoButton().setEnabled(false);
+					}
 				
 				} else {
 					
-					resetBoard();
 					// Don't allow user to click Undo
 					boardView.getUndoButton().setEnabled(false);
 					

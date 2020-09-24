@@ -4,13 +4,13 @@ Piece code: Piece Name + Color + location X + location Y
 ***null means that there is no chess piece on that spot***
 
 Move Counter: 
-3
+6
 
-PLSB00 TRIB10 CHVB20 null   CHVB40 TRIB50 PLSB60 
-ARRB01 null   ARRB21 SUNB31 ARRB41 null   ARRB61 
+TRIB00 PLSB10 CHVB20 null   CHVB40 PLSB50 TRIB60 
+ARRB01 null   ARRB21 null   SUNB41 null   ARRB61 
 null   null   null   null   null   null   null   
-null   null   null   null   null   null   null   
+null   null   null   null   ARRB43 null   null   
 null   null   ARRR24 null   null   null   null   
-null   null   null   null   null   null   null   
-ARRR06 null   null   null   ARRR46 null   ARRR66 
-PLSR07 TRIR17 CHVR27 SUNR37 CHVR47 TRIR57 PLSR67 
+null   null   null   CHVR35 null   null   null   
+ARRR06 null   SUNR26 null   ARRR46 null   ARRR66 
+TRIR07 PLSR17 null   null   CHVR47 PLSR57 TRIR67 
